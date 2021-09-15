@@ -1,4 +1,4 @@
-package loanapplicationapp.loanapplicationservice.Exceptions;
+package loanapplicationapp.loanapplicationservice.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
