@@ -2,6 +2,7 @@ package loanapplicationapp.loanapplicationservice.DTO.request;
 
 import loanapplicationapp.loanapplicationservice.utilities.ErrorMessages;
 import loanapplicationapp.loanapplicationservice.utilities.StringConstants;
+import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
 
@@ -12,6 +13,7 @@ import javax.validation.constraints.*;
  * identification number, forename, surname and phone.
  */
 @Data
+@Builder
 public class LoanApplicationRequest {
     @NotNull
     @Digits(integer = 11, fraction = 0, message = ErrorMessages.NOT_A_VALID_ID_ERROR)

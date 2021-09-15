@@ -17,4 +17,5 @@ public class LoanApplicationController {
         System.out.println(loanApplicationRequest);
         return ResponseEntity.ok(loanApplicationRequest);
     }
+
 }
