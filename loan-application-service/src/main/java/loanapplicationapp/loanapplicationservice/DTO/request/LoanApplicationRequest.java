@@ -5,10 +5,7 @@ import loanapplicationapp.loanapplicationservice.utilities.StringConstants;
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
 
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 /**
  * Basic type to handle loan application post request, contains customers
@@ -16,7 +13,7 @@ import javax.validation.constraints.Size;
  */
 @Data
 public class LoanApplicationRequest {
-    @NotBlank
+    @NotNull
     @Digits(integer = 11, fraction = 0, message = ErrorMessages.NOT_A_VALID_ID_ERROR)
     private final Long identificationNumber;
     @NotBlank
@@ -26,6 +23,6 @@ public class LoanApplicationRequest {
     @Pattern(regexp = StringConstants.CHAR_ONLY_REGEX_MIN_MAX, message = ErrorMessages.NON_ALPHABETICAL_ERROR)
     private final String surname;
     @NotBlank
-    @Range(min = 10, max = 11, message = ErrorMessages.NOT_A_VALID_PHONE)
-    private final Long phone;
+    @Pattern(regexp = StringConstants.PHONE_NUMBER_REGEX, message = ErrorMessages.NOT_A_VALID_PHONE)
+    private final String phone;
 }
