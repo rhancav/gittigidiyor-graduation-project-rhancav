@@ -6,8 +6,9 @@
     <packaging>pom</packaging>
     <groupId>groupId</groupId>
     <artifactId>gittigidiyor-graduation-project-rhancav</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <modules>
-        <module>loan-application-service</module>
+        <module>loan-application-api</module>
+        <module>findex-inquiry-api</module>
     </modules>
 </project>
