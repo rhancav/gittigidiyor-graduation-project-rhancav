@@ -1,5 +1,8 @@
 package loanapplicationapp.loanapplicationservice.service;
 
-public interface LoanApplicationService {
+import loanapplicationapp.loanapplicationservice.DTO.request.LoanApplicationRequest;
+import loanapplicationapp.loanapplicationservice.DTO.response.EligibilityResponse;
 
+public interface LoanApplicationService {
+    EligibilityResponse checkEligibility(LoanApplicationRequest loanApplicationRequest);
 }

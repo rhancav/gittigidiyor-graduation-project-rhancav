@@ -12,4 +12,5 @@ public class UtilityMethods {
     public static String uppercaseFirstChar(String s){
         return StringUtils.capitalize(s.toLowerCase());
     }
+
 }
