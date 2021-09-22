@@ -6,6 +6,7 @@
         <option value="$PROJECT_DIR$/loan-application-service/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/credit-score-inquiry-api/pom.xml" />
+        <option value="$PROJECT_DIR$/sms-service-api/pom.xml" />
       </list>
     </option>
   </component>

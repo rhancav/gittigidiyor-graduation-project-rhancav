@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="sms-service-api" />
         <module name="loan-application-api" />
         <module name="findex-inquiry-api" />
       </profile>
@@ -15,12 +16,14 @@
       <module name="findex-inquiry-api" target="11" />
       <module name="gittigidiyor-graduation-project-rhancav" target="1.5" />
       <module name="loan-application-api" target="11" />
+      <module name="sms-service-api" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="findex-inquiry-api" options="-parameters" />
       <module name="loan-application-api" options="-parameters" />
+      <module name="sms-service-api" options="-parameters" />
     </option>
   </component>
 </project>

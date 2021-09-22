@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/findex-inquiry-api/findex-inquiry-api.iml" filepath="$PROJECT_DIR$/findex-inquiry-api/findex-inquiry-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/gittigidiyor-graduation-project-rhancav.iml" filepath="$PROJECT_DIR$/.idea/gittigidiyor-graduation-project-rhancav.iml" />
       <module fileurl="file://$PROJECT_DIR$/loan-application-api/loan-application-api.iml" filepath="$PROJECT_DIR$/loan-application-api/loan-application-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sms-service-api/sms-service-api.iml" filepath="$PROJECT_DIR$/sms-service-api/sms-service-api.iml" />
     </modules>
   </component>
 </project>

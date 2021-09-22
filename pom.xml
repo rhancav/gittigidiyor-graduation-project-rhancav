@@ -10,5 +10,6 @@
     <modules>
         <module>loan-application-api</module>
         <module>findex-inquiry-api</module>
+        <module>sms-service-api</module>
     </modules>
 </project>
