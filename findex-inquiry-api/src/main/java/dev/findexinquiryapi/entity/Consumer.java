@@ -8,13 +8,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * Entity model for Consumer data.
+ * @author Erhan CAVDAR
+ */
 @Entity
 @Getter
 @Setter
 @ToString
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Consumer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

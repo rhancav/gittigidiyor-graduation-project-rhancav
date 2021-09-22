@@ -12,11 +12,20 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Implementation class of the {@link ConsumerService} interface.
+ * @author Erhan CAVDAR
+ */
 @Service
 @RequiredArgsConstructor
 public class ConsumerServiceImpl implements ConsumerService {
     private final ConsumerRepository consumerRepository;
 
+    /**
+     * {@inheritDoc}
+     * @param consumer object to persist.
+     * @return
+     */
     @Override
     public Consumer save(Consumer consumer) {
         if (consumerExists(consumer.getIdentificationNumber())) {
@@ -28,6 +37,10 @@ public class ConsumerServiceImpl implements ConsumerService {
         return consumerRepository.save(consumer);
     }
 
+    /**
+     * {@inheritDoc}
+     * @param consumer to be updated.
+     */
     @Override
     public void update(Consumer consumer) {
         if (!consumerExists(consumer.getIdentificationNumber())) {
@@ -36,6 +49,10 @@ public class ConsumerServiceImpl implements ConsumerService {
         consumerRepository.save(consumer);
     }
 
+    /**
+     * {@inheritDoc}
+     * @param identificationNumber of the consumer.
+     */
     @Override
     public void delete(Long identificationNumber) {
         if (!consumerExists(identificationNumber)) {
@@ -44,20 +61,33 @@ public class ConsumerServiceImpl implements ConsumerService {
         consumerRepository.deleteByIdentificationNumber(identificationNumber);
     }
 
+    /**
+     * {@inheritDoc}
+     * @return
+     */
     @Override
     public List<Consumer> findAll() {
         return consumerRepository.findAll();
     }
 
+    /**
+     * {@inheritDoc}
+     * @param identificationNumber of the consumer.
+     * @return
+     */
     @Override
     public Consumer findByIdentificationNumber(Long identificationNumber) {
         return consumerRepository.findConsumerByIdentificationNumber(identificationNumber).orElseThrow(() -> new ConsumerNotExistentException(""));
     }
 
+    /**
+     * {@inheritDoc}
+     * @param identificationNumber the ID of the desired consumer.
+     * @return
+     */
     @Override
     public ScoreInquiryResponse getScoreAndIncomeInfoByID(Long identificationNumber) {
         Consumer consumer = findByIdentificationNumber(identificationNumber);
-        System.out.println(consumer.toString());
         return new ScoreInquiryResponse(consumer.getCreditScore(), consumer.getMonthlyIncome());
     }
 

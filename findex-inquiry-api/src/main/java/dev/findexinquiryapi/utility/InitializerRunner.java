@@ -6,6 +6,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+/**
+ * Implements the {@link CommandLineRunner} interface to
+ * insert some mock data at the beggining.
+ * @author Erhan CAVDAR
+ */
 @Component
 @RequiredArgsConstructor
 public class InitializerRunner implements CommandLineRunner {
