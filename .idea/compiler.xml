@@ -11,6 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="gittigidiyor-graduation-project-rhancav" target="1.5" />
       <module name="loan-application-service" target="16" />
     </bytecodeTargetLevel>
   </component>
