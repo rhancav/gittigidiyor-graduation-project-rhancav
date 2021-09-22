@@ -11,13 +11,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/consumers")
 @RequiredArgsConstructor
 public class FindexInquiryController {
-    ConsumerService consumerService;
+    private final ConsumerService consumerService;
+
     @GetMapping("/{ID}")
-    public ResponseEntity<ScoreInquiryResponse> getCreditScore(@PathVariable long ID){
+    public ResponseEntity<ScoreInquiryResponse> getCreditScore(@PathVariable long ID) {
+        System.out.println(ID);
         return ResponseEntity.ok(consumerService.getScoreAndIncomeInfoByID(ID));
     }
+
     @PostMapping
-    public ResponseEntity<Consumer> save(@RequestBody Consumer consumer){
+    public ResponseEntity<Consumer> save(@RequestBody Consumer consumer) {
         return ResponseEntity.ok(consumerService.save(consumer));
     }
 

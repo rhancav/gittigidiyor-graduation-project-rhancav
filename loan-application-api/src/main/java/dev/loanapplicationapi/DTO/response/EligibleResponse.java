@@ -5,6 +5,6 @@ import lombok.Getter;
 @Getter
 public class EligibleResponse extends EligibilityResponse {
     public EligibleResponse(String message) {
-        super(EligibilityStatus.ELIGIBLE, message);
+        super(EligibilityStatus.ELIGIBLE.value, message);
     }
 }

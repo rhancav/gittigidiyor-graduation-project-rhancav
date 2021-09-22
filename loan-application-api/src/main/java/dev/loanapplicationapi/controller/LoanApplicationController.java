@@ -1,9 +1,9 @@
 package dev.loanapplicationapi.controller;
 
-import dev.loanapplicationapi.DTO.response.EligibilityResponse;
 import dev.loanapplicationapi.DTO.request.LoanApplicationRequest;
+import dev.loanapplicationapi.DTO.response.EligibilityResponse;
 import dev.loanapplicationapi.service.LoanApplicationService;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,9 +14,9 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/loan-applications")
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class LoanApplicationController {
-    LoanApplicationService loanApplicationService;
+    private final LoanApplicationService loanApplicationService;
 
     @PostMapping
     public ResponseEntity<EligibilityResponse> postApplication(@RequestBody @Valid LoanApplicationRequest loanApplicationRequest) {

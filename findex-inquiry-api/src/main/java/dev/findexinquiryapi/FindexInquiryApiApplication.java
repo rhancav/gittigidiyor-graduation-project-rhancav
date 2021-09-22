@@ -6,10 +6,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class CreditScoreInquiryApiApplication {
+public class FindexInquiryApiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CreditScoreInquiryApiApplication.class, args);
+        SpringApplication.run(FindexInquiryApiApplication.class, args);
     }
 
 }
