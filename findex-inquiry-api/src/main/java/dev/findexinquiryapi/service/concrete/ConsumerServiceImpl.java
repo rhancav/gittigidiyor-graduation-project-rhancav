@@ -22,7 +22,7 @@ public class ConsumerServiceImpl implements ConsumerService {
         if (consumerExists(consumer.getIdentificationNumber())) {
             throw new ConsumerAlreadyExistsException("");
         }
-        if(consumer.getCreditScore()==0){
+        if (consumer.getCreditScore() == 0) {
             consumer.setCreditScore(calculateScore(consumer.getIdentificationNumber()));
         }
         return consumerRepository.save(consumer);

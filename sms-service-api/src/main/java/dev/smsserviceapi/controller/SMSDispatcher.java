@@ -18,7 +18,7 @@ public class SMSDispatcher {
     private final DispatcherService dispatcherService;
 
     @PostMapping
-    public ResponseEntity<AbstractResponse> dispatchSMS(@RequestBody SMSRequest smsRequest){
+    public ResponseEntity<AbstractResponse> dispatchSMS(@RequestBody SMSRequest smsRequest) {
         return ResponseEntity.ok(new SuccessfulDeliveryResponse());
     }
 
