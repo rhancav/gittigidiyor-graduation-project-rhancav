@@ -1,9 +1,12 @@
 package dev.loanapplicationapi.DTO.response;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ScoreInquiryResponse {
-    private final int score;
-    private final double monthlyIncome;
+    private int score;
 }

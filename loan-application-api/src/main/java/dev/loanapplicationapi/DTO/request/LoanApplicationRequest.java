@@ -2,6 +2,7 @@ package dev.loanapplicationapi.DTO.request;
 
 import dev.loanapplicationapi.utilities.Messages;
 import dev.loanapplicationapi.utilities.StringConstants;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 
@@ -27,4 +28,8 @@ public class LoanApplicationRequest {
     @NotBlank
     @Pattern(regexp = StringConstants.PHONE_NUMBER_REGEX, message = Messages.NOT_A_VALID_PHONE)
     private String phone;
+    @ApiModelProperty(example = "2750",
+            dataType = "Double"
+    )
+    private double monthlyIncome;
 }

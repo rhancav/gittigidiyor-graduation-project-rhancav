@@ -14,8 +14,4 @@ public class ScoreInquiryResponse {
             dataType = "Integer"
     )
     private final int score;
-    @ApiModelProperty(example = "2750",
-            dataType = "Double"
-    )
-    private final double monthlyIncome;
 }

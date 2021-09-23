@@ -7,6 +7,7 @@ import dev.loanapplicationapi.DTO.response.NotEligibleResponse;
 
 /**
  * Contains abstract methods which are related to operations on Loan Application process.
+ * @author Erhan Cavdar
  */
 public interface LoanApplicationService {
     /**

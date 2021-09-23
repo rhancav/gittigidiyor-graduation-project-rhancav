@@ -40,15 +40,6 @@ public class ConsumerCreationRequest {
     )
     private String surname;
     @NotNull
-    @Digits(integer = 12, fraction = 2, message = Messages.INCOME_LENGTH_ERROR)
-    @Positive(message = Messages.POSITIVE_NUMBER_ERROR)
-    @ApiModelProperty(example = "14000",
-            required = true,
-            dataType = "Double",
-            notes = "Must be numbers only and maximum 12 digits long."
-    )
-    private Double monthlyIncome;
-    @NotNull
     @Digits(integer = 4, fraction = 0, message = Messages.SCORE_LENGTH_ERROR)
     @Positive(message = Messages.POSITIVE_NUMBER_ERROR)
     @ApiModelProperty(example = "500",

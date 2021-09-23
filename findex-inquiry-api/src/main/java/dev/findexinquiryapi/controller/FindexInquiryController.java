@@ -31,7 +31,7 @@ public class FindexInquiryController {
      */
     @GetMapping("/{ID}")
     public ResponseEntity<ScoreInquiryResponse> getCreditScore(@PathVariable @ApiParam(example = "45612398712") long ID) {
-        return ResponseEntity.ok(consumerService.getScoreAndIncomeInfoByID(ID));
+        return ResponseEntity.ok(consumerService.getScoreByID(ID));
     }
 
     /**

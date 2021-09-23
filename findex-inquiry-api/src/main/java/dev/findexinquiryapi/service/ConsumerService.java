@@ -50,10 +50,10 @@ public interface ConsumerService {
     Consumer findByIdentificationNumber(Long identificationNumber);
 
     /**
-     * Gets the credit score and monthly income information wrapped
+     * Gets the credit score information wrapped
      * in the {@link ScoreInquiryResponse} object.
      * @param identificationNumber the ID of the desired consumer.
      * @return {@link ScoreInquiryResponse} object.
      */
-    ScoreInquiryResponse getScoreAndIncomeInfoByID(Long identificationNumber);
+    ScoreInquiryResponse getScoreByID(Long identificationNumber);
 }

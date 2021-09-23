@@ -86,9 +86,9 @@ public class ConsumerServiceImpl implements ConsumerService {
      * @return
      */
     @Override
-    public ScoreInquiryResponse getScoreAndIncomeInfoByID(Long identificationNumber) {
+    public ScoreInquiryResponse getScoreByID(Long identificationNumber) {
         Consumer consumer = findByIdentificationNumber(identificationNumber);
-        return new ScoreInquiryResponse(consumer.getCreditScore(), consumer.getMonthlyIncome());
+        return new ScoreInquiryResponse(consumer.getCreditScore());
     }
 
     /**

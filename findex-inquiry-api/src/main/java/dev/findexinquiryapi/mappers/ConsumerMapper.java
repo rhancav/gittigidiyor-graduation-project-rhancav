@@ -20,7 +20,6 @@ public class ConsumerMapper {
                 .surname(consumerCreationRequest.getSurname())
                 .identificationNumber(consumerCreationRequest.getIdentificationNumber())
                 .creditScore(consumerCreationRequest.getCreditScore())
-                .monthlyIncome(consumerCreationRequest.getMonthlyIncome())
                 .build();
     }
 }

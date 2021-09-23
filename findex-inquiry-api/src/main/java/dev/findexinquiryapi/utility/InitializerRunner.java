@@ -22,31 +22,26 @@ public class InitializerRunner implements CommandLineRunner {
                 .forename("Osman")
                 .surname("Kahraman")
                 .identificationNumber(87618281292L)
-                .monthlyIncome(2500D)
                 .build();
         Consumer consumer2 = Consumer.builder()
                 .forename("Ali")
                 .surname("Kahraman")
                 .identificationNumber(97898281298L)
-                .monthlyIncome(500D)
                 .build();
         Consumer consumer3 = Consumer.builder()
                 .forename("Hasan")
                 .surname("Mehmet")
                 .identificationNumber(32318281290L)
-                .monthlyIncome(1500D)
                 .build();
         Consumer consumer4 = Consumer.builder()
                 .forename("Mehmet")
                 .surname("Kahraman")
                 .identificationNumber(17618281294L)
-                .monthlyIncome(1400D)
                 .build();
         Consumer consumer5 = Consumer.builder()
                 .forename("Hakkı")
                 .surname("Kahraman")
                 .identificationNumber(27618281296L)
-                .monthlyIncome(1500D)
                 .build();
         consumerService.save(consumer);
         consumerService.save(consumer2);
