@@ -7,6 +7,9 @@
     <groupId>groupId</groupId>
     <artifactId>gittigidiyor-graduation-project-rhancav</artifactId>
     <version>1.0</version>
+    <properties>
+        <java.version>11</java.version>
+    </properties>
     <modules>
         <module>loan-application-api</module>
         <module>findex-inquiry-api</module>

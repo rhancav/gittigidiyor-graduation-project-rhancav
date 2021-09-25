@@ -26,7 +26,7 @@ public interface ConsumerService {
      * throws {@link ConsumerNotExistentException} exception.
      * @param consumer to be updated.
      */
-    void update(Consumer consumer);
+    void update(Long id, Consumer consumer);
 
     /**
      * If the given consumer exists, performs delete by the national ID. If not

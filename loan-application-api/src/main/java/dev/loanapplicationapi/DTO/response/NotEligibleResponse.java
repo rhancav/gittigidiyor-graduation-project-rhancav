@@ -3,6 +3,10 @@ package dev.loanapplicationapi.DTO.response;
 import dev.loanapplicationapi.utilities.Messages;
 import lombok.Getter;
 
+/**
+ * {@link EligibleResponse}
+ * @author Erhan Cavdar
+ */
 @Getter
 public class NotEligibleResponse extends EligibilityResponse {
     public NotEligibleResponse() {

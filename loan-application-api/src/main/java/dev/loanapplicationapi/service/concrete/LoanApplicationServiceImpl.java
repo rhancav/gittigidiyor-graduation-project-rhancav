@@ -3,6 +3,9 @@ package dev.loanapplicationapi.service.concrete;
 import dev.loanapplicationapi.DTO.request.LoanApplicationRequest;
 import dev.loanapplicationapi.DTO.request.SMSRequest;
 import dev.loanapplicationapi.DTO.response.*;
+import dev.loanapplicationapi.exceptions.ConsumerNotFoundOnRemoteException;
+import dev.loanapplicationapi.exceptions.NotAValidIDException;
+import dev.loanapplicationapi.model.CreditApplicationLog;
 import dev.loanapplicationapi.repository.CreditApplicationLogRepository;
 import dev.loanapplicationapi.service.CreditApplicationLogService;
 import dev.loanapplicationapi.service.LoanApplicationService;
@@ -11,10 +14,17 @@ import dev.loanapplicationapi.utilities.Messages;
 import dev.loanapplicationapi.utilities.StringConstants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
+/**
+ * {@inheritDoc}
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -31,10 +41,12 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
      */
     @Override
     public EligibilityResponse checkEligibility(LoanApplicationRequest loanApplicationRequest) {
-        // Target URL with path variable
-        String queryURL = StringConstants.CREDIT_SCORE_API_URL + loanApplicationRequest.getIdentificationNumber().toString().trim();
+        // Cant end with an odd number
+        if(loanApplicationRequest.getIdentificationNumber()%2 != 0){
+            throw new NotAValidIDException("Not a valid identification number, cannot end with an odd number.");
+        }
         // Attempt to get associated credit score
-        ScoreInquiryResponse scoreInquiryResponse = restTemplate.getForObject(queryURL, ScoreInquiryResponse.class);
+        ScoreInquiryResponse scoreInquiryResponse = getScoreInquiryResponse(loanApplicationRequest.getIdentificationNumber());
         // Get the eligibility tier
         EligibilityTier eligibilityTier = getEligibilityTier(scoreInquiryResponse, loanApplicationRequest.getMonthlyIncome());
         // Uninitialized EligibilityResponse object, to be set later in the if-else tree
@@ -66,7 +78,24 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
         creditApplicationLogService.persistApplicationLog(loanApplicationRequest, creditLimit, eligible);
         return eligibilityResponse;
     }
-    private void persistCreditApplicationLog(){
+
+    /**
+     * Gets the query response from the "remore" Findex Inquiry Api. Throws {@link ConsumerNotFoundOnRemoteException}
+     * if the server responds with ConsumerNotFoundException.
+     * @param identificationNumber of the consumer
+     * @return ScoreInquiryObject if the request is successfull.
+     */
+    private ScoreInquiryResponse getScoreInquiryResponse(long identificationNumber){
+        ScoreInquiryResponse scoreInquiryResponse;
+        // Target URL with path variable
+        String queryURL = StringConstants.CREDIT_SCORE_API_URL + identificationNumber;
+        try{
+            scoreInquiryResponse = restTemplate.getForObject(queryURL, ScoreInquiryResponse.class);
+        }
+        catch (HttpClientErrorException e){
+                throw new ConsumerNotFoundOnRemoteException(e.getMessage());
+        }
+        return scoreInquiryResponse;
 
     }
 

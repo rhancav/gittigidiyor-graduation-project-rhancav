@@ -17,6 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class SMSDispatcher {
     private final DispatcherService dispatcherService;
 
+    /**
+     * Dispatches the incoming smsRequest to the fake sms service.
+     * @param smsRequest containing message and phone.
+     * @return a response containing success status and a message.
+     */
     @PostMapping
     public ResponseEntity<AbstractResponse> dispatchSMS(@RequestBody SMSRequest smsRequest) {
         return ResponseEntity.ok(new SuccessfulDeliveryResponse());
