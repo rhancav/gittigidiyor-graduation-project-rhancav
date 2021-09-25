@@ -8,6 +8,6 @@ public class StringConstants {
     // SMS Service API
     public static final String SMS_SERVICE_API_URL = "http://localhost:8082/api/sms-dispatcher/";
     // Findex API
-    public static final String CREDIT_SCORE_API_URL = "http://localhost:8081/api/consumers/";
+    public static final String CREDIT_SCORE_API_URL = "http://localhost:9090/findex-inquiry/api/consumers/";
 
 }
