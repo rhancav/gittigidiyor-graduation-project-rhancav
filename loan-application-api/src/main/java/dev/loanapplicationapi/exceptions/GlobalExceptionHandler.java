@@ -26,8 +26,27 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(NotFoundAnyApplicationsException.class)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<String> handleException(NotFoundAnyApplicationsException exception){
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(ConsumerNotFoundOnRemoteException.class)
+    public ResponseEntity<String> handleException(ConsumerNotFoundOnRemoteException e){
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NotAValidIDException.class)
+    public ResponseEntity<String> handleException(NotAValidIDException e){
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NotNullableException.class)
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+    public ResponseEntity<String> handleException(NotNullableException exception){
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+    }
+    @ExceptionHandler(UnsupportedFilterException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<String> handleException(UnsupportedFilterException exception){
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

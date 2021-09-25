@@ -8,6 +8,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +30,11 @@ public class GlobalHandler {
         // Populate errors map with field name and error message
         bindingResult.getFieldErrors().forEach((e) -> errors.put(e.getField(),e.getDefaultMessage()));
         return new ResponseEntity<ValidationErrorResponse>(new ValidationErrorResponse(HttpStatus.NOT_ACCEPTABLE.value(),errors), HttpStatus.NOT_ACCEPTABLE);
+    }
+    @ExceptionHandler(HttpClientErrorException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<String> handleException(HttpClientErrorException exception){
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     // Handle ConsumerNotExistentException

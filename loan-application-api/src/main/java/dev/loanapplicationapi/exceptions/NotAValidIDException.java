@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class NotFoundAnyApplicationsException extends RuntimeException{
-    public NotFoundAnyApplicationsException(String message) {
+public class NotAValidIDException extends RuntimeException{
+    public NotAValidIDException(String message) {
         super(message);
     }
 }

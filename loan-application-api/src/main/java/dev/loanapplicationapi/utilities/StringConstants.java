@@ -6,7 +6,7 @@ public class StringConstants {
     // Min 10 and max 11 chars long, doesnt support country codes.
     public static final String PHONE_NUMBER_REGEX = "^\\s*-?[0-9]{10,11}\\s*$";
     // SMS Service API
-    public static final String SMS_SERVICE_API_URL = "http://localhost:8082/api/sms-dispatcher/";
+    public static final String SMS_SERVICE_API_URL = "http://localhost:9090/sms-service-api/api/sms-dispatcher/";
     // Findex API
     public static final String CREDIT_SCORE_API_URL = "http://localhost:9090/findex-inquiry-api/api/consumers/";
 
