@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Base controller class for dispatching incoming requests
@@ -44,6 +45,15 @@ public class FindexInquiryController {
     public ResponseEntity<Consumer> save(@RequestBody @Valid ConsumerCreationRequest consumerCreationRequest) {
         // Mapped to Consumer object using a custom mapper
         return ResponseEntity.ok(consumerService.save(ConsumerMapper.getConsumer(consumerCreationRequest)));
+    }
+
+    /**
+     * Lists all of the available consumers without any filters.
+     * @return the list of consumers.
+     */
+    @GetMapping
+    public ResponseEntity<List<Consumer>> findAll(){
+        return ResponseEntity.ok(consumerService.findAll());
     }
 
 }
