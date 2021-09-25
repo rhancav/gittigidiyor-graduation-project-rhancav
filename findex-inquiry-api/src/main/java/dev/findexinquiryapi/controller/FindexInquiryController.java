@@ -56,4 +56,35 @@ public class FindexInquiryController {
         return ResponseEntity.ok(consumerService.findAll());
     }
 
+    /**
+     * Updates the consumer associated with the given id
+     */
+    @PutMapping("/{identificationNumber}")
+    public ResponseEntity<String> update(@PathVariable @ApiParam(example = "35476897812", required = true) long identificationNumber, @Valid Consumer consumer){
+        consumerService.update(identificationNumber, consumer);
+        return ResponseEntity.ok(String.format("Consumer with the %d ID is successfully updated.", identificationNumber));
+    }
+
+    /**
+     * Get the consumer with the given identification number.
+     * @param identificationNumber identification number of the consumer
+     * @return the consumer object wrapped insie ResonseEntity object.
+     */
+    @GetMapping("/{identificationNumber}")
+    public ResponseEntity<Consumer> getConsumerByID(@PathVariable @ApiParam(example = "35476897812", required = true) long identificationNumber){
+        return ResponseEntity.ok(consumerService.findByIdentificationNumber(identificationNumber));
+    }
+
+    /**
+     * Delete the customer with the given identification number.
+     * @param identificationNumber identification number of the consumer
+     * @return deletion success message if the consumer is existent
+     */
+    @DeleteMapping("/{identificationNumber}")
+    public ResponseEntity<String> deleteByID(@PathVariable @ApiParam(example = "35476897812", required = true) long identificationNumber){
+        consumerService.delete(identificationNumber);
+        return ResponseEntity.ok(String.format(String.format("Consumer with the %d ID is successfully deleted.", identificationNumber)));
+    }
+
+
 }

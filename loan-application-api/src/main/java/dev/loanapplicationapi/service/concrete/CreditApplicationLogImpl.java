@@ -15,6 +15,9 @@ import lombok.*;
 
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)

@@ -12,6 +12,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.time.Instant;
 
+/**
+ * Base entity object
+ * @author Erhan Cavdar
+ */
 @MappedSuperclass
 @NoArgsConstructor
 @Getter

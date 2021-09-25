@@ -8,6 +8,10 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 
+/**
+ * Credit Application Log which contains date, result, limit and consumer info.
+ * It is not updatable.
+ */
 @Entity
 @Getter
 @Setter

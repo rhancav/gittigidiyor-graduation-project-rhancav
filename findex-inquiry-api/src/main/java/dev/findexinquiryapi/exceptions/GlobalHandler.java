@@ -41,19 +41,19 @@ public class GlobalHandler {
     @ExceptionHandler(ConsumerNotExistentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<String> handleException(ConsumerNotExistentException exception){
-        return new ResponseEntity<>("Consumer not existent with the given fields please check the fields and try again.", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
 
     }
     // Handle ConsumerAlreadyExistsException
     @ExceptionHandler(ConsumerAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<String> handleException(ConsumerAlreadyExistsException exception){
-        return new ResponseEntity<>("Consumer already exists with the given ID.", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
     // Handle NotAValidIDException
     @ExceptionHandler(NotAValidIDException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<String> handleException(NotAValidIDException exception){
-        return new ResponseEntity<>("National ID should not end with an odd number.", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

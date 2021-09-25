@@ -4,7 +4,9 @@ import lombok.*;
 
 import javax.persistence.Embeddable;
 
-
+/**
+ * Embeddable Consumer object which contains basic data on Consumer.
+ */
 @Getter
 @Setter
 @ToString

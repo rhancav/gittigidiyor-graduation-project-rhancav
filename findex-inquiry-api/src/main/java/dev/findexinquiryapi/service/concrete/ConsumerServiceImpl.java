@@ -29,7 +29,7 @@ public class ConsumerServiceImpl implements ConsumerService {
     @Override
     public Consumer save(Consumer consumer) {
         if (consumerExists(consumer.getIdentificationNumber())) {
-            throw new ConsumerAlreadyExistsException("");
+            throw new ConsumerAlreadyExistsException("Consumer already exists with the given identification number.");
         }
         if (consumer.getCreditScore() == 0) {
             consumer.setCreditScore(calculateScore(consumer.getIdentificationNumber()));
@@ -42,9 +42,9 @@ public class ConsumerServiceImpl implements ConsumerService {
      * @param consumer to be updated.
      */
     @Override
-    public void update(Consumer consumer) {
+    public void update(Long id, Consumer consumer) {
         if (!consumerExists(consumer.getIdentificationNumber())) {
-            throw new ConsumerNotExistentException("");
+            throw new ConsumerNotExistentException("Could not found consumer with the given identification number.");
         }
         consumerRepository.save(consumer);
     }
@@ -56,7 +56,7 @@ public class ConsumerServiceImpl implements ConsumerService {
     @Override
     public void delete(Long identificationNumber) {
         if (!consumerExists(identificationNumber)) {
-            throw new ConsumerNotExistentException("");
+            throw new ConsumerNotExistentException("Could not found consumer with the given identification number.");
         }
         consumerRepository.deleteByIdentificationNumber(identificationNumber);
     }
@@ -77,7 +77,7 @@ public class ConsumerServiceImpl implements ConsumerService {
      */
     @Override
     public Consumer findByIdentificationNumber(Long identificationNumber) {
-        return consumerRepository.findConsumerByIdentificationNumber(identificationNumber).orElseThrow(() -> new ConsumerNotExistentException(""));
+        return consumerRepository.findConsumerByIdentificationNumber(identificationNumber).orElseThrow(() -> new ConsumerNotExistentException("Could not found consumer with the given identification number."));
     }
 
     /**
@@ -115,7 +115,7 @@ public class ConsumerServiceImpl implements ConsumerService {
         } else if (String.valueOf(identificationNumber).endsWith("0")) {
             score = 2000;
         } else {
-            throw new NotAValidIDException("");
+            throw new NotAValidIDException("National ID should not end with an odd number.");
         }
         return score;
 
