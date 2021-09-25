@@ -4,6 +4,9 @@ import dev.loanapplicationapi.DTO.request.LoanApplicationRequest;
 import dev.loanapplicationapi.DTO.response.EligibilityResponse;
 import dev.loanapplicationapi.DTO.response.EligibleResponse;
 import dev.loanapplicationapi.DTO.response.NotEligibleResponse;
+import dev.loanapplicationapi.model.CreditApplicationLog;
+
+import java.util.List;
 
 /**
  * Contains abstract methods which are related to operations on Loan Application process.
@@ -20,4 +23,5 @@ public interface LoanApplicationService {
      * @return {@link EligibleResponse} or {@link NotEligibleResponse}
      */
     EligibilityResponse checkEligibility(LoanApplicationRequest loanApplicationRequest);
+
 }

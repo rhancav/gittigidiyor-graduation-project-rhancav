@@ -1,6 +1,9 @@
 package dev.loanapplicationapi.service;
 
 import dev.loanapplicationapi.DTO.request.LoanApplicationRequest;
+import dev.loanapplicationapi.model.CreditApplicationLog;
+
+import java.util.List;
 
 /**
  * Contains abstract methods which are related to CRUD operations on Credit Applicaton Logs.
@@ -15,4 +18,12 @@ public interface CreditApplicationLogService {
      * @param eligible eligilibility status
      */
     void persistApplicationLog(LoanApplicationRequest loanApplicationRequest, double creditLimit, boolean eligible);
+
+    /**
+     * List all the past applications associated with the given identification number sorted by creation date.
+     * Can take three kind of filters: DESC to sort in descending order, ASC to sort
+     * ascending order and LAST to get the latest application. If none given, it is UNFILTERED by default.
+     * @return the list of applications
+     */
+    List<CreditApplicationLog> findAllByID(Long identificationNumber, String filter);
 }

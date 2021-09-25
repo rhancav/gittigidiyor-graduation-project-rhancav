@@ -3,6 +3,7 @@ package dev.loanapplicationapi.service.concrete;
 import dev.loanapplicationapi.DTO.request.LoanApplicationRequest;
 import dev.loanapplicationapi.DTO.request.SMSRequest;
 import dev.loanapplicationapi.DTO.response.*;
+import dev.loanapplicationapi.model.CreditApplicationLog;
 import dev.loanapplicationapi.repository.CreditApplicationLogRepository;
 import dev.loanapplicationapi.service.CreditApplicationLogService;
 import dev.loanapplicationapi.service.LoanApplicationService;
@@ -14,6 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -66,9 +69,8 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
         creditApplicationLogService.persistApplicationLog(loanApplicationRequest, creditLimit, eligible);
         return eligibilityResponse;
     }
-    private void persistCreditApplicationLog(){
 
-    }
+
 
     /**
      * Utility method to get the eligibility tier of the given inquiry object.

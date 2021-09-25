@@ -24,4 +24,10 @@ public class GlobalExceptionHandler {
         bindingResult.getFieldErrors().forEach((e) -> errors.put(e.getField(), e.getDefaultMessage()));
         return new ResponseEntity<>(errors, HttpStatus.NOT_ACCEPTABLE);
     }
+
+    @ExceptionHandler(NotFoundAnyApplicationsException.class)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<String> handleException(NotFoundAnyApplicationsException exception){
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NO_CONTENT);
+    }
 }
