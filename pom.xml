@@ -11,8 +11,10 @@
         <java.version>11</java.version>
     </properties>
     <modules>
-        <module>loan-application-api</module>
-        <module>findex-inquiry-api</module>
-        <module>sms-service-api</module>
+        <module>loan-application-service</module>
+        <module>findex-inquiry-service</module>
+        <module>sms-service</module>
+        <module>api-gateway</module>
+        <module>eureka-service-registry</module>
     </modules>
 </project>

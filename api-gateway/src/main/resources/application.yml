@@ -16,16 +16,16 @@ spring:
     cloud:
         gateway:
             routes:
-            -   id: findex-inquiry-api
-                uri: lb://FINDEX-INQUIRY-API
+            -   id: findex-inquiry-service
+                uri: lb://FINDEX-INQUIRY-SERVICE
                 predicates:
                 - Path=/**
-            -   id: loan-application-api
-                uri: lb://LOAN-APPLICATION-API
+            -   id: loan-application-service
+                uri: lb://LOAN-APPLICATION-SERVICE
                 predicates:
                 - Path=/**
-            -   id: sms-service-api
-                uri: lb://SMS-SERVICE-API
+            -   id: sms-service
+                uri: lb://SMS-SERVICE
                 predicates:
                 - Path=/**
             discovery:
