@@ -4,10 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/api-gateway/api-gateway.iml" filepath="$PROJECT_DIR$/api-gateway/api-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka-service-registry/eureka-service-registry.iml" filepath="$PROJECT_DIR$/eureka-service-registry/eureka-service-registry.iml" />
-      <module fileurl="file://$PROJECT_DIR$/findex-inquiry-api/findex-inquiry-api.iml" filepath="$PROJECT_DIR$/findex-inquiry-api/findex-inquiry-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/findex-inquiry-api/findex-inquiry-service.iml" filepath="$PROJECT_DIR$/findex-inquiry-api/findex-inquiry-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/gittigidiyor-graduation-project-rhancav.iml" filepath="$PROJECT_DIR$/.idea/gittigidiyor-graduation-project-rhancav.iml" />
-      <module fileurl="file://$PROJECT_DIR$/loan-application-api/loan-application-api.iml" filepath="$PROJECT_DIR$/loan-application-api/loan-application-api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sms-service-api/sms-service-api.iml" filepath="$PROJECT_DIR$/sms-service-api/sms-service-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-application-api/loan-application-service.iml" filepath="$PROJECT_DIR$/loan-application-api/loan-application-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sms-service-api/sms-service.iml" filepath="$PROJECT_DIR$/sms-service-api/sms-service.iml" />
     </modules>
   </component>
 </project>

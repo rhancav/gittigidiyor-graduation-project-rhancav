@@ -3,8 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/api-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eureka-service-registry/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/findex-inquiry-api/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/loan-application-api/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/sms-service-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/findex-inquiry-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-application-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sms-service/src/main/java" charset="UTF-8" />
   </component>
 </project>
