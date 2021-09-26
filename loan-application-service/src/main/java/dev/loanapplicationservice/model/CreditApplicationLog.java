@@ -6,6 +6,7 @@ import org.hibernate.annotations.Immutable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
+import java.time.Instant;
 
 /**
  * Credit Application Log which contains date, result, limit and consumer info.

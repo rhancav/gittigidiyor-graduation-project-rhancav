@@ -65,15 +65,15 @@ public class FindexInquiryController {
         return ResponseEntity.ok(String.format("Consumer with the %d ID is successfully updated.", identificationNumber));
     }
 
-    /**
+ /*   *//**
      * Get the consumer with the given identification number.
      * @param identificationNumber identification number of the consumer
      * @return the consumer object wrapped insie ResonseEntity object.
-     */
+     *//*
     @GetMapping("/{identificationNumber}")
     public ResponseEntity<Consumer> getConsumerByID(@PathVariable @ApiParam(example = "35476897812", required = true) long identificationNumber){
         return ResponseEntity.ok(consumerService.findByIdentificationNumber(identificationNumber));
-    }
+    }*/
 
     /**
      * Delete the customer with the given identification number.

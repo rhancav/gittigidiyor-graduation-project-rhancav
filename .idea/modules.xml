@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/findex-inquiry-service/findex-inquiry-service.iml" filepath="$PROJECT_DIR$/findex-inquiry-service/findex-inquiry-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/gittigidiyor-graduation-project-rhancav.iml" filepath="$PROJECT_DIR$/gittigidiyor-graduation-project-rhancav.iml" />
       <module fileurl="file://$PROJECT_DIR$/loan-application-service/loan-application-service.iml" filepath="$PROJECT_DIR$/loan-application-service/loan-application-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-application-ui/loan-application-ui.iml" filepath="$PROJECT_DIR$/loan-application-ui/loan-application-ui.iml" />
       <module fileurl="file://$PROJECT_DIR$/sms-service-service/sms-service.iml" filepath="$PROJECT_DIR$/sms-service-service/sms-service.iml" />
     </modules>
   </component>
