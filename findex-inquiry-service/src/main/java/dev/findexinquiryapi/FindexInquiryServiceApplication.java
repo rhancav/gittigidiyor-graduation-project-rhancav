@@ -8,10 +8,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 @EnableEurekaClient
-public class FindexInquiryApiApplication {
+public class FindexInquiryServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FindexInquiryApiApplication.class, args);
+        SpringApplication.run(FindexInquiryServiceApplication.class, args);
     }
 
 }
