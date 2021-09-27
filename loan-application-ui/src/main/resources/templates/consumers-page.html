@@ -60,7 +60,6 @@
                 <table class="table table-striped table-sm">
                     <thead>
                     <tr>
-                        <th>#</th>
                         <th>Identification</th>
                         <th>Forename</th>
                         <th>Surname</th>
@@ -69,11 +68,16 @@
                     </thead>
                     <tbody>
                     <tr th:each="consumer: ${consumers}">
-                        <td></td>
                         <td th:text="${consumer.identificationNumber}" />
                         <td th:text="${consumer.forename}" />
                         <td th:text="${consumer.surname}" />
                         <td th:text="${consumer.creditScore}" />
+                        <td>
+                            <div style="display: inline-flex">
+                                <a th:href="@{/consumers/delete(identificationNumber=${consumer.identificationNumber})}" class="btn btn-danger btn-sm">Delete</a>
+                                <a th:href="@{/consumers/update-form(identificationNumber=${consumer.identificationNumber},forename=${consumer.forename}, surname=${consumer.surname}, creditScore=${consumer.creditScore})}" class="btn btn-warning btn-sm">Update</a>
+                            </div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

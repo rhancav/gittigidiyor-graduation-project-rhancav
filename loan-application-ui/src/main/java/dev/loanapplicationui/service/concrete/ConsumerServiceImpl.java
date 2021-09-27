@@ -27,4 +27,15 @@ public class ConsumerServiceImpl implements ConsumerService {
         ResponseEntity<Consumer> consumerResponseEntity = restTemplate.postForEntity(StringConstants.FINDEX_CONSUMERS_API_URI, consumer, Consumer.class);
         return consumerResponseEntity;
     }
+
+    @Override
+    public void delete(long identificationNumber) {
+        restTemplate.delete(StringConstants.FINDEX_CONSUMERS_API_URI+"/"+identificationNumber);
+    }
+
+    @Override
+    public void update(Consumer consumer) {
+        log.error("Service level consumer data: "+consumer.toString());
+        restTemplate.put(StringConstants.FINDEX_CONSUMERS_API_URI+"/"+consumer.getIdentificationNumber(), consumer);
+    }
 }

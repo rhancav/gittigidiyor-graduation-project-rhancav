@@ -1,5 +1,6 @@
 package dev.loanapplicationui.controller;
 
+import dev.loanapplicationui.DTO.CreditApplicationLog;
 import dev.loanapplicationui.DTO.request.LoanApplicationRequest;
 import dev.loanapplicationui.DTO.response.CreditEligibilityResponse;
 import dev.loanapplicationui.service.LoanApplicationService;
@@ -12,6 +13,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -19,13 +22,9 @@ import javax.validation.Valid;
 public class LoanApplicationController {
     private final LoanApplicationService loanApplicationService;
 
-    @GetMapping
-    public String mainPage(){
-        return "index";
-    }
 
     @PostMapping("/applications")
-    public String postApplication(@ModelAttribute LoanApplicationRequest loanApplicationRequest, Model model, BindingResult bindingResult) {
+    public String postApplication(@Valid LoanApplicationRequest loanApplicationRequest, Model model) {
         log.warn(loanApplicationRequest.toString());
         CreditEligibilityResponse creditEligibilityResponse = loanApplicationService.postApplication(loanApplicationRequest);
         model.addAttribute("result", creditEligibilityResponse.getEligibility());
@@ -34,21 +33,23 @@ public class LoanApplicationController {
     }
 
     @GetMapping("/new-application")
-    public String newApplication(@ModelAttribute @Valid LoanApplicationRequest loanApplicationRequest, Model model, BindingResult bindingResult){
-        UtilityMethods.logErrors(bindingResult);
-        model.addAttribute(loanApplicationRequest);
+    public String newApplicationForm(@ModelAttribute(name = "loanApplicationRequest") LoanApplicationRequest loanApplicationRequest){
         return "new-application-page";
     }
 
     @GetMapping("/applications")
     public String appList(Model model, @RequestParam long identificationNumber){
+        List<CreditApplicationLog> logs = loanApplicationService.getLogsByID(identificationNumber);
+        if(logs.isEmpty()){
+            return "/error/no-logs-found-page";
+        }
         model.addAttribute("identificationNumber", identificationNumber);
-        model.addAttribute("logs", loanApplicationService.getLogsByID(identificationNumber));
+        model.addAttribute("logs", logs);
         return "application-page";
     }
 
     @GetMapping("/application-inquiry")
-    public String handleInquiry(){
+    public String inquiryForm(){
         return "application-inquiry-page";
     }
 }

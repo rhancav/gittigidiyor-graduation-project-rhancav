@@ -16,5 +16,6 @@
         <module>sms-service</module>
         <module>api-gateway</module>
         <module>eureka-service-registry</module>
+        <module>loan-application-ui</module>
     </modules>
 </project>

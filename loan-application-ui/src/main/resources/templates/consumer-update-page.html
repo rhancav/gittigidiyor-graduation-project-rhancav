@@ -59,13 +59,23 @@
       <!--Form Start-->
       <div class="container" style="width: 700px; margin-right: 600px">
         <h2 style="text-align: center">Consumer Info</h2>
-        <form method="get" th:action="@{/applications}">
-          <label for="identificationNumber" class="form-label">Identification Number</label>
-          <input id="identificationNumber" type="text" class="form-control" required minlength="11" maxlength="11" th:name="identificationNumber">
-          <div class="mt-1">
-            <button type="submit" class="btn btn-dark">Submit</button>
-            <button type="reset" class="btn btn-dark">Clear</button>
+        <form method="post" th:action="@{/consumers/update(identificationNumber=${consumer.identificationNumber})}" th:object="${consumer}">
+          <div class="d-flex flex-row">
+            <div class="mb-3 flex-fill">
+              <label for="forename" class="form-label">Forename</label>
+              <input  id="forename" type="text" class="form-control" required  th:field="*{forename}">
+            </div>
+            <div class="mb-3 flex-fill">
+              <label for="surname" class="form-label">Surname</label>
+              <input  type="text" class="form-control" id="surname" required  th:field="*{surname}">
+            </div>
           </div>
+          <div class="mb-3">
+            <label class="form-label" for="creditScore">Credit Score</label>
+            <input  type="text" class="form-control" id="creditScore"  th:field="*{creditScore}">
+          </div>
+          <button type="submit" class="btn btn-dark">Submit</button>
+          <button type="reset" class="btn btn-dark">Clear</button>
         </form>
       </div>
       <!--Form End-->

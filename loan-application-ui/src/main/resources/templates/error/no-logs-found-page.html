@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>New Consumer</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -56,19 +54,7 @@
     </nav>
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-      <!--Form Start-->
-      <div class="container" style="width: 700px; margin-right: 600px">
-        <h2 style="text-align: center">Consumer Info</h2>
-        <form method="get" th:action="@{/applications}">
-          <label for="identificationNumber" class="form-label">Identification Number</label>
-          <input id="identificationNumber" type="text" class="form-control" required minlength="11" maxlength="11" th:name="identificationNumber">
-          <div class="mt-1">
-            <button type="submit" class="btn btn-dark">Submit</button>
-            <button type="reset" class="btn btn-dark">Clear</button>
-          </div>
-        </form>
-      </div>
-      <!--Form End-->
+      <h5 class="text-danger">No logs found for the given identification number.</h5>
     </main>
   </div>
 </div>
@@ -84,5 +70,4 @@
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 </body>
-
 </html>

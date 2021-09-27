@@ -24,10 +24,10 @@ public class LoanApplicationRequest {
     @Min(value = 10000000000L, message = Messages.NOT_A_VALID_ID_ERROR)
     private Long identificationNumber;
     @NotBlank
-    @Pattern(regexp = StringConstants.CHAR_ONLY_REGEX_MIN_MAX, message = Messages.NON_ALPHABETICAL_ERROR)
+    @Pattern(regexp = StringConstants.FORENAME_REGEX, message = Messages.NON_ALPHABETICAL_ERROR)
     private String forename;
     @NotBlank
-    @Pattern(regexp = StringConstants.CHAR_ONLY_REGEX_MIN_MAX, message = Messages.NON_ALPHABETICAL_ERROR)
+    @Pattern(regexp = StringConstants.SURNAME_REGEX, message = Messages.NON_ALPHABETICAL_ERROR)
     private String surname;
     @NotBlank
     @Pattern(regexp = StringConstants.PHONE_NUMBER_REGEX, message = Messages.NOT_A_VALID_PHONE)

@@ -6,6 +6,7 @@ package dev.findexinquiryservice.utility;
  * @author Erhan CAVDAR
  */
 public class StringConstants {
+
     // Chars only with minimum three and maximum thirty chars long in length
     public static final String FORENAME_REGEX = "^[\\p{L}]{3,30}$";
     public static final String SURNAME_REGEX = "^[\\p{L}]{2,30}$";

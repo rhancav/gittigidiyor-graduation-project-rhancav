@@ -8,4 +8,6 @@ import java.util.List;
 public interface ConsumerService {
     List<Consumer> getConsumers();
     ResponseEntity<Consumer> save(Consumer consumer);
+    void delete(long identificationNumber);
+    void update(Consumer consumer);
 }

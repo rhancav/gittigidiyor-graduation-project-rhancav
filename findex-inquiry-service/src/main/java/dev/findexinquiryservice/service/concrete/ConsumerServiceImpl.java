@@ -8,8 +8,10 @@ import dev.findexinquiryservice.exceptions.NotAValidIDException;
 import dev.findexinquiryservice.repository.ConsumerRepository;
 import dev.findexinquiryservice.service.ConsumerService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -18,6 +20,7 @@ import java.util.List;
  */
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ConsumerServiceImpl implements ConsumerService {
     private final ConsumerRepository consumerRepository;
 
@@ -42,11 +45,18 @@ public class ConsumerServiceImpl implements ConsumerService {
      * @param consumer to be updated.
      */
     @Override
+    @Transactional
     public void update(Long id, Consumer consumer) {
+        // TODO Fix this!!!
         if (!consumerExists(consumer.getIdentificationNumber())) {
             throw new ConsumerNotExistentException("Could not found consumer with the given identification number.");
         }
-        consumerRepository.save(consumer);
+        Consumer consumer1 = findByIdentificationNumber(id);
+        consumer1.setCreditScore(consumer.getCreditScore());
+        consumer1.setForename(consumer.getForename());
+        consumer1.setSurname(consumer.getSurname());
+        log.warn("Consumer data is: "+consumer1.toString());
+        consumerRepository.save(consumer1);
     }
 
     /**
@@ -54,6 +64,7 @@ public class ConsumerServiceImpl implements ConsumerService {
      * @param identificationNumber of the consumer.
      */
     @Override
+    @Transactional
     public void delete(Long identificationNumber) {
         if (!consumerExists(identificationNumber)) {
             throw new ConsumerNotExistentException("Could not found consumer with the given identification number.");
@@ -128,6 +139,9 @@ public class ConsumerServiceImpl implements ConsumerService {
      * @return true if it exists or else false.
      */
     private boolean consumerExists(Long identificationNumber) {
-        return consumerRepository.findConsumerByIdentificationNumber(identificationNumber).isPresent();
+        log.warn("The id of the consumer is: "+identificationNumber);
+        boolean result = consumerRepository.findConsumerByIdentificationNumber(identificationNumber).isPresent();
+        log.warn("The returned result is: "+result);
+        return result;
     }
 }

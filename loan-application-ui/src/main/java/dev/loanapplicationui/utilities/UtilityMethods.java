@@ -7,11 +7,13 @@ import java.util.HashMap;
 import java.util.Map;
 @Slf4j
 public class UtilityMethods {
-    public static void logErrors(BindingResult bindingResult){
+    public static String logErrors(BindingResult bindingResult, String form){
         if(bindingResult.hasErrors()){
             Map<String, String> errors = new HashMap<>();
             bindingResult.getFieldErrors().forEach((e)-> errors.put(e.getField(),e.getDefaultMessage()));
             errors.forEach((e, c) -> log.warn(e+" "+c));
+            return form;
         }
+        return null;
     }
 }

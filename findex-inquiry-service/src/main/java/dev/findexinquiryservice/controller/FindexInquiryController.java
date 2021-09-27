@@ -7,6 +7,7 @@ import dev.findexinquiryservice.mappers.ConsumerMapper;
 import dev.findexinquiryservice.service.ConsumerService;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/consumers")
 @RequiredArgsConstructor
+@Slf4j
 public class FindexInquiryController {
     private final ConsumerService consumerService;
 
@@ -60,7 +62,8 @@ public class FindexInquiryController {
      * Updates the consumer associated with the given id
      */
     @PutMapping("/{identificationNumber}")
-    public ResponseEntity<String> update(@PathVariable @ApiParam(example = "35476897812", required = true) long identificationNumber, @Valid Consumer consumer){
+    public ResponseEntity<String> update(@PathVariable @ApiParam(example = "35476897812", required = true) long identificationNumber, @RequestBody Consumer consumer){
+        log.error("Controller level consumer data is : "+consumer);
         consumerService.update(identificationNumber, consumer);
         return ResponseEntity.ok(String.format("Consumer with the %d ID is successfully updated.", identificationNumber));
     }
