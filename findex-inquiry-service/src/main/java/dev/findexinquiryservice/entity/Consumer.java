@@ -26,5 +26,5 @@ public class Consumer {
     private Long identificationNumber;
     private String forename;
     private String surname;
-    private int creditScore;
+    private Integer creditScore;
 }

@@ -10,6 +10,7 @@ import dev.findexinquiryservice.service.ConsumerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -34,9 +35,12 @@ public class ConsumerServiceImpl implements ConsumerService {
         if (consumerExists(consumer.getIdentificationNumber())) {
             throw new ConsumerAlreadyExistsException("Consumer already exists with the given identification number.");
         }
-        if (consumer.getCreditScore() == 0) {
+        if (consumer.getCreditScore() ==  null || consumer.getCreditScore() == 0) {
             consumer.setCreditScore(calculateScore(consumer.getIdentificationNumber()));
         }
+        // Capitalized only
+        consumer.setForename(StringUtils.capitalize(consumer.getForename().toLowerCase()));
+        consumer.setSurname(StringUtils.capitalize(consumer.getSurname().toLowerCase()));
         return consumerRepository.save(consumer);
     }
 

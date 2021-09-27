@@ -39,9 +39,8 @@ public class ConsumerCreationRequest {
             notes = "It is UNICODE supported. Should be at least 2, maximum 30 chars long."
     )
     private String surname;
-    @NotNull
     @Digits(integer = 4, fraction = 0, message = Messages.SCORE_LENGTH_ERROR)
-    @Positive(message = Messages.POSITIVE_NUMBER_ERROR)
+    @Min(value = 0, message = Messages.POSITIVE_NUMBER_ERROR)
     @ApiModelProperty(example = "500",
             required = false,
             dataType = "Integer",
