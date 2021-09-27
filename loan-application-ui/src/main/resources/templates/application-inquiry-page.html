@@ -62,6 +62,12 @@
         <form method="get" th:action="@{/applications}">
           <label for="identificationNumber" class="form-label">Identification Number</label>
           <input id="identificationNumber" type="text" class="form-control" required pattern="\d{11,11}" th:name="identificationNumber" oninvalid="this.setCustomValidity('Should be min and max 11 chars long and only digits accepted.')">
+          <select id="filter" class="form-select" aria-label="Select filter:" th:name="filter">
+            <option selected value="UNFILTERED">Select filter:</option>
+            <option value="DESC">By Date DESC</option>
+            <option value="ASC">By Date ASC</option>
+            <option value="LAST">Latest Only</option>
+          </select>
           <div class="mt-1">
             <button type="submit" class="btn btn-dark">Submit</button>
             <button type="reset" class="btn btn-dark">Clear</button>

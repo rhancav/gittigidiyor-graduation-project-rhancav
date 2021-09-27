@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface LoanApplicationService {
     CreditEligibilityResponse postApplication(LoanApplicationRequest loanApplicationRequest);
-    List<CreditApplicationLog> getLogsByID(long identificationNumber);
+    List<CreditApplicationLog> getLogsByID(long identificationNumber, String filter);
 }

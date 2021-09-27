@@ -25,8 +25,8 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
     }
 
     @Override
-    public List<CreditApplicationLog> getLogsByID(long identificationNumber) {
-        List<CreditApplicationLog> logs = restTemplate.getForEntity(StringConstants.LOAN_APP_API_URI+"/"+identificationNumber, List.class).getBody();
+    public List<CreditApplicationLog> getLogsByID(long identificationNumber, String filter) {
+        List<CreditApplicationLog> logs = restTemplate.getForEntity(StringConstants.LOAN_APP_API_URI+"/"+identificationNumber+"?filter="+filter, List.class).getBody();
         log.warn("Logs at service level are: "+logs);
         return logs;
     }

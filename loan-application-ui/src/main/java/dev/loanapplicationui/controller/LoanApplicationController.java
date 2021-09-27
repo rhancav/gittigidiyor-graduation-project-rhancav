@@ -38,12 +38,13 @@ public class LoanApplicationController {
     }
 
     @GetMapping("/applications")
-    public String appList(Model model, @RequestParam long identificationNumber){
-        List<CreditApplicationLog> logs = loanApplicationService.getLogsByID(identificationNumber);
+    public String applicationList(Model model, @RequestParam long identificationNumber, @RequestParam String filter){
+        List<CreditApplicationLog> logs = loanApplicationService.getLogsByID(identificationNumber, filter);
         if(logs.isEmpty()){
             return "/error/no-logs-found-page";
         }
         model.addAttribute("identificationNumber", identificationNumber);
+        model.addAttribute("filter", filter);
         model.addAttribute("logs", logs);
         return "application-page";
     }
