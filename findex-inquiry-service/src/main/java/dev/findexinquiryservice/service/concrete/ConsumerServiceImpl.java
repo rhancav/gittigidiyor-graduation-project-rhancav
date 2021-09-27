@@ -55,6 +55,8 @@ public class ConsumerServiceImpl implements ConsumerService {
         if (!consumerExists(consumer.getIdentificationNumber())) {
             throw new ConsumerNotExistentException("Could not found consumer with the given identification number.");
         }
+        consumer.setForename(StringUtils.capitalize(consumer.getForename().toLowerCase()));
+        consumer.setSurname(StringUtils.capitalize(consumer.getSurname().toLowerCase()));
         Consumer consumer1 = findByIdentificationNumber(id);
         consumer1.setCreditScore(consumer.getCreditScore());
         consumer1.setForename(consumer.getForename());

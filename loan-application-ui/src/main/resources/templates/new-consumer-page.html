@@ -63,20 +63,20 @@
           <div class="d-flex flex-row">
             <div class="mb-3 flex-fill">
               <label for="forename" class="form-label">Forename</label>
-              <input id="forename" type="text" class="form-control" required  th:field="*{forename}">
+              <input id="forename" type="text" class="form-control" required pattern="[\p{L}]{3,30}$" th:field="*{forename}" oninvalid="this.setCustomValidity('Forename should be minimum 3 and maximum 30 chars long and should contain chars only.')">
             </div>
             <div class="mb-3 flex-fill">
               <label for="surname" class="form-label">Surname</label>
-              <input type="text" class="form-control" id="surname" required  th:field="*{surname}">
+              <input type="text" class="form-control" id="surname" required pattern="[\p{L}]{2,30}$" th:field="*{surname}" oninvalid="this.setCustomValidity('Forename should be minimum 3 and maximum 30 chars long and should contain chars only.')">
             </div>
           </div>
           <div class="mb-3">
             <label class="form-label" for="nationalID">National ID</label>
-            <input type="number" class="form-control" id="nationalID" required th:field="*{identificationNumber}">
+            <input type="text" class="form-control" id="nationalID" required pattern="\d{11,11}" th:field="*{identificationNumber}" oninvalid="this.setCustomValidity('Should be min and max 11 chars long and only digits accepted.')">
           </div>
           <div class="mb-3">
             <label class="form-label" for="creditScore">Credit Score</label>
-            <input type="text" class="form-control" id="creditScore"  th:field="*{creditScore}">
+            <input type="number" class="form-control" id="creditScore"  max="2000" th:field="*{creditScore}" oninvalid="this.setCustomValidity('Cannot be more then 2000.')">
           </div>
           <button type="submit" class="btn btn-dark">Submit</button>
           <button type="reset" class="btn btn-dark">Clear</button>

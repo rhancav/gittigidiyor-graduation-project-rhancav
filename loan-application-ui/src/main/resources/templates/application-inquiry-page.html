@@ -61,7 +61,7 @@
         <h2 style="text-align: center">Consumer Info</h2>
         <form method="get" th:action="@{/applications}">
           <label for="identificationNumber" class="form-label">Identification Number</label>
-          <input id="identificationNumber" type="text" class="form-control" required minlength="11" maxlength="11" th:name="identificationNumber">
+          <input id="identificationNumber" type="text" class="form-control" required pattern="\d{11,11}" th:name="identificationNumber" oninvalid="this.setCustomValidity('Should be min and max 11 chars long and only digits accepted.')">
           <div class="mt-1">
             <button type="submit" class="btn btn-dark">Submit</button>
             <button type="reset" class="btn btn-dark">Clear</button>
