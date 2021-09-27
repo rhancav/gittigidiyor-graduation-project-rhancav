@@ -31,7 +31,7 @@ public class ConsumerController {
      * @param consumerCreationRequest request DTO
      * @return {@link Consumer} object wrapped inside {@link ResponseEntity}
      */
-    @PostMapping("/consumers")
+    @PostMapping
     public ResponseEntity<Consumer> save(@RequestBody @Valid ConsumerCreationRequest consumerCreationRequest) {
         // Mapped to Consumer object using a custom mapper
         return ResponseEntity.ok(consumerService.save(ConsumerMapper.getConsumer(consumerCreationRequest)));
@@ -41,7 +41,7 @@ public class ConsumerController {
      * Lists all of the available consumers without any filters.
      * @return the list of consumers.
      */
-    @GetMapping("/consumers")
+    @GetMapping
     public ResponseEntity<List<Consumer>> findAll(){
         return ResponseEntity.ok(consumerService.findAll());
     }
@@ -49,7 +49,7 @@ public class ConsumerController {
     /**
      * Updates the consumer associated with the given id
      */
-    @PutMapping("/consumers/{identificationNumber}")
+    @PutMapping("/{identificationNumber}")
     public ResponseEntity<String> update(@PathVariable @ApiParam(example = "35476897812", required = true) long identificationNumber, @RequestBody Consumer consumer){
         log.error("Controller level consumer data is : "+consumer);
         consumerService.update(identificationNumber, consumer);
@@ -71,7 +71,7 @@ public class ConsumerController {
      * @param identificationNumber identification number of the consumer
      * @return deletion success message if the consumer is existent
      */
-    @DeleteMapping("/consumers/{identificationNumber}")
+    @DeleteMapping("/{identificationNumber}")
     public ResponseEntity<String> deleteByID(@PathVariable @ApiParam(example = "35476897812", required = true) long identificationNumber){
         consumerService.delete(identificationNumber);
         return ResponseEntity.ok(String.format(String.format("Consumer with the %d ID is successfully deleted.", identificationNumber)));

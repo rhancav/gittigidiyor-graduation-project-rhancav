@@ -18,6 +18,6 @@ public class DispatcherServiceImpl implements DispatcherService {
      */
     @Override
     public void dispatch(SMSRequest smsRequest) {
-        log.info("SMS successfully sent.", smsRequest);
+        log.info("SMS successfully sent: " + smsRequest);
     }
 }

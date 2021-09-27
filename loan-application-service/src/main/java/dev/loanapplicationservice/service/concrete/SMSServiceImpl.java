@@ -9,6 +9,7 @@ import dev.loanapplicationservice.utilities.StringConstants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -29,11 +30,12 @@ public class SMSServiceImpl implements SMSService {
     @Override
     public void sendApplicationNotice(LoanApplicationRequest loanApplicationRequest, double creditLimit, boolean eligible) {
         String message;
-        if (eligible) {
-            message = String.format(Messages.APPROVAL_RESPONSE_SMS, loanApplicationRequest.getForename(), loanApplicationRequest.getSurname(), creditLimit);
+        if (!eligible) {
+            message = String.format(Messages.NOT_ELIGIBLE_RESPONSE_SMS, StringUtils.capitalize(loanApplicationRequest.getForename().toLowerCase()), StringUtils.capitalize(loanApplicationRequest.getSurname().toLowerCase()));
+        } else {
+            message = String.format(Messages.APPROVAL_RESPONSE_SMS, StringUtils.capitalize(loanApplicationRequest.getForename().toLowerCase()), StringUtils.capitalize(loanApplicationRequest.getSurname().toLowerCase()), creditLimit);
+            // New request object
         }
-        message = String.format(Messages.NOT_ELIGIBLE_RESPONSE_SMS, loanApplicationRequest.getForename(), loanApplicationRequest.getSurname());
-        // New request object
         SMSRequest smsRequest = new SMSRequest(loanApplicationRequest.getPhone(), message);
         // Send request object
         SMSDispatcherResponse smsDispatcherResponse = restTemplate.postForObject(StringConstants.SMS_SERVICE_API_URL, smsRequest, SMSDispatcherResponse.class);

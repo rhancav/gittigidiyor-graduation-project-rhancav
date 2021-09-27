@@ -8,6 +8,7 @@ import lombok.Data;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.time.Instant;
 import java.time.LocalDate;
 
 /**
@@ -25,7 +26,7 @@ public class SMSRequest {
     @ApiModelProperty(example = "You are eligible for credit.", required = true)
     private final String message;
     // Creation time
-    private final LocalDate sentTime = LocalDate.now();
+    private final Instant sentTime = Instant.now();
 }
 
 

@@ -12,8 +12,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.*;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * {@inheritDoc}
@@ -35,8 +37,8 @@ public class CreditApplicationLogImpl implements CreditApplicationLogService {
     public void persistApplicationLog(LoanApplicationRequest loanApplicationRequest, double creditLimit, boolean eligible){
         // Consumer Info
         Consumer consumer = Consumer.builder()
-                .forename(loanApplicationRequest.getForename())
-                .surname(loanApplicationRequest.getSurname())
+                .forename(StringUtils.capitalize(loanApplicationRequest.getForename().toLowerCase()))
+                .surname(StringUtils.capitalize(loanApplicationRequest.getSurname().toLowerCase()))
                 .identificationNumber(loanApplicationRequest.getIdentificationNumber())
                 .monthlyIncome(loanApplicationRequest.getMonthlyIncome())
                 .build();

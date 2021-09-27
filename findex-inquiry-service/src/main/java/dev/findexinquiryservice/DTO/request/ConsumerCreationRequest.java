@@ -26,7 +26,7 @@ public class ConsumerCreationRequest {
     )
     private Long identificationNumber;
     @NotBlank
-    @Pattern(regexp = StringConstants.FORENAME_REGEX, message = Messages.NON_ALPHABETICAL_ERROR)
+    @Pattern(regexp = StringConstants.UNICODE_CHAR_ONLY, message = Messages.NON_ALPHABETICAL_ERROR)
     @ApiModelProperty(example = "Osman",
             required = true,
             dataType = "String",
@@ -34,7 +34,7 @@ public class ConsumerCreationRequest {
     )
     private String forename;
     @NotBlank
-    @Pattern(regexp = StringConstants.SURNAME_REGEX, message = Messages.NON_ALPHABETICAL_ERROR)
+    @Pattern(regexp = StringConstants.UNICODE_CHAR_ONLY, message = Messages.NON_ALPHABETICAL_ERROR)
     @ApiModelProperty(example = "Akca",
             required = true,
             dataType = "String",

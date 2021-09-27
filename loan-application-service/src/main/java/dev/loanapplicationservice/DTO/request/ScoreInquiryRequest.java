@@ -1,14 +1,13 @@
 package dev.loanapplicationservice.DTO.request;
 
 import dev.loanapplicationservice.utilities.Messages;
+import dev.loanapplicationservice.utilities.StringConstants;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 /**
  * @author Erhan Cavdar
@@ -23,4 +22,20 @@ public class ScoreInquiryRequest {
     @Min(value = 10000000000L, message = Messages.NOT_A_VALID_ID_ERROR)
     @ApiModelProperty(example = "31271262080", required = true)
     private Long identificationNumber;
+    @NotBlank
+    @Pattern(regexp = StringConstants.CHAR_ONLY_REGEX_MIN_MAX, message = Messages.NON_ALPHABETICAL_ERROR)
+    @ApiModelProperty(example = "Osman",
+            required = true,
+            dataType = "String",
+            notes = "It is UNICODE supported. Should be at least 2, maximum 30 chars long."
+    )
+    private String forename;
+    @NotBlank
+    @Pattern(regexp = StringConstants.CHAR_ONLY_REGEX_MIN_MAX, message = Messages.NON_ALPHABETICAL_ERROR)
+    @ApiModelProperty(example = "Osman",
+            required = true,
+            dataType = "String",
+            notes = "It is UNICODE supported. Should be at least 2, maximum 30 chars long."
+    )
+    private String surname;
 }

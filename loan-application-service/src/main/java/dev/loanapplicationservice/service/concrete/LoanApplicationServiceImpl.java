@@ -1,6 +1,7 @@
 package dev.loanapplicationservice.service.concrete;
 
 import dev.loanapplicationservice.DTO.request.LoanApplicationRequest;
+import dev.loanapplicationservice.DTO.request.ScoreInquiryRequest;
 import dev.loanapplicationservice.DTO.response.*;
 import dev.loanapplicationservice.exceptions.ConsumerNotFoundOnRemoteException;
 import dev.loanapplicationservice.exceptions.NotAValidIDException;
@@ -12,6 +13,7 @@ import dev.loanapplicationservice.utilities.StringConstants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -39,7 +41,12 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
             throw new NotAValidIDException("Not a valid identification number, cannot end with an odd number.");
         }
         // Attempt to get associated credit score
-        ScoreInquiryResponse scoreInquiryResponse = getScoreInquiryResponse(loanApplicationRequest.getIdentificationNumber());
+        ScoreInquiryRequest scoreInquiryRequest = ScoreInquiryRequest.builder()
+                .forename(StringUtils.capitalize(loanApplicationRequest.getForename().toLowerCase()))   // Could be all lower case of course
+                .surname(StringUtils.capitalize(loanApplicationRequest.getSurname().toLowerCase()))     // Also this
+                .identificationNumber(loanApplicationRequest.getIdentificationNumber())
+                .build();
+        ScoreInquiryResponse scoreInquiryResponse = getScoreInquiryResponse(scoreInquiryRequest);
         // Get the eligibility tier
         EligibilityTier eligibilityTier = getEligibilityTier(scoreInquiryResponse, loanApplicationRequest.getMonthlyIncome());
         // Uninitialized EligibilityResponse object, to be set later in the if-else tree
@@ -75,15 +82,15 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
     /**
      * Gets the query response from the "remore" Findex Inquiry Api. Throws {@link ConsumerNotFoundOnRemoteException}
      * if the server responds with ConsumerNotFoundException.
-     * @param identificationNumber of the consumer
+     * @param scoreInquiryRequest containing basic consumer information
      * @return ScoreInquiryObject if the request is successfull.
      */
-    private ScoreInquiryResponse getScoreInquiryResponse(long identificationNumber){
+    private ScoreInquiryResponse getScoreInquiryResponse(ScoreInquiryRequest scoreInquiryRequest){
         ScoreInquiryResponse scoreInquiryResponse;
         // Target URL with path variable
-        String queryURL = StringConstants.CREDIT_SCORE_API_URL + identificationNumber;
+        String queryURL = StringConstants.CREDIT_SCORE_API_URL;
         try{
-            scoreInquiryResponse = restTemplate.getForObject(queryURL, ScoreInquiryResponse.class);
+            scoreInquiryResponse = restTemplate.postForObject(queryURL, scoreInquiryRequest, ScoreInquiryResponse.class);
         }
         catch (HttpClientErrorException e){
                 throw new ConsumerNotFoundOnRemoteException(e.getMessage());
