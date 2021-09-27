@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Past Applications Inquiry</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body data-new-gr-c-s-check-loaded="14.1029.0" data-gr-ext-installed="">
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Loan Application</a>
+  <!--<ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+          <a class="nav-link" href="#">Sign out</a>
+      </li>
+  </ul>-->
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <b>
+              <a class="nav-link active" href="/application-inquiry" style="color: black">
+                Application Inquiry
+              </a>
+            </b>
+          </li>
+          <li class="nav-item">
+            <b>
+              <a class="nav-link" href="/new-application" style="color: black">
+                New Application
+              </a>
+            </b>
+          </li>
+          <li class="nav-item">
+            <b>
+              <a class="nav-link" href="/consumers" style="color: black">
+                Consumers
+              </a>
+            </b>
+          </li>
+          <li class="nav-item">
+            <b>
+              <a class="nav-link" href="/new-consumer" style="color: black">
+                New Consumer
+              </a>
+            </b>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+      <!--Form Start-->
+      <div class="container" style="width: 700px; margin-right: 600px">
+        <h2 style="text-align: center">Consumer Info</h2>
+        <form method="get" th:action="@{/applications}">
+          <div style="width: 700px">
+            <label for="identificationNumber" class="form-label" >Identification Number</label>
+            <input id="identificationNumber" type="text" class="form-control" required pattern="\d{11,11}" th:name="identificationNumber" oninvalid="this.setCustomValidity('Should be min and max 11 chars long and only digits accepted.')">
+          </div>
+          <div class="mt-1 d-flex flex-row">
+            <button type="submit" class="btn btn-dark">Submit</button>
+            <button type="reset" class="btn btn-dark" style="margin-left: 10px">Clear</button>
+            <select id="filter" class="form-select float-right" aria-label="Select filter:" th:name="filter" style="width: auto; margin-left: 405px">
+              <option selected value="UNFILTERED">Select filter:</option>
+              <option value="DESC">By Date DESC</option>
+              <option value="ASC">By Date ASC</option>
+              <option value="LAST">Latest Only</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <!--Form End-->
+    </main>
+  </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="../../assets/js/vendor/popper.min.js"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+</body>
+
+</html>
