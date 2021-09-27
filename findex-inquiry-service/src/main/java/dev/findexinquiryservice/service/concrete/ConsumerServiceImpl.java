@@ -126,7 +126,7 @@ public class ConsumerServiceImpl implements ConsumerService {
      * 400 if id ends with "6",
      * 900 if id ends with "8" and 2000 if the id ends with "0".
      */
-    private int calculateScore(Long identificationNumber) {
+    public int calculateScore(Long identificationNumber) {
         int score;
         if (String.valueOf(identificationNumber).endsWith("2")) {
             score = 550;

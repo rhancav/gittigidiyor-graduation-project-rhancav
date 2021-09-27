@@ -4,6 +4,7 @@ import dev.findexinquiryservice.utility.Messages;
 import dev.findexinquiryservice.utility.StringConstants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.*;
@@ -13,6 +14,7 @@ import javax.validation.constraints.*;
  */
 @Data
 @ApiModel(description = "Simple POJO to separate Consumer entity from the control layer while saving a new consumer.")
+@Builder
 public class ConsumerCreationRequest {
     @NotNull
     @Digits(integer = 11, fraction = 0, message = Messages.NOT_A_VALID_ID_ERROR)
