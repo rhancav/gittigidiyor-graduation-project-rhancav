@@ -9,8 +9,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -26,7 +28,19 @@ public class LoanApplicationController {
     @PostMapping("/applications")
     public String postApplication(@Valid LoanApplicationRequest loanApplicationRequest, Model model) {
         log.warn(loanApplicationRequest.toString());
-        CreditEligibilityResponse creditEligibilityResponse = loanApplicationService.postApplication(loanApplicationRequest);
+        CreditEligibilityResponse creditEligibilityResponse;
+        try{
+            creditEligibilityResponse = loanApplicationService.postApplication(loanApplicationRequest);
+        }
+        catch (HttpClientErrorException e){
+            if(e.getMessage().contains("Consumer information does not match any entity in database.")){
+                log.error(e.getMessage());
+                return "/error/no-consumer-found-page";
+            }
+            else{
+                return "/error/something-went-wrong-page";
+            }
+        }
         model.addAttribute("result", creditEligibilityResponse.getEligibility());
         model.addAttribute("message", creditEligibilityResponse.getMessage());
         return "application-result-page";
