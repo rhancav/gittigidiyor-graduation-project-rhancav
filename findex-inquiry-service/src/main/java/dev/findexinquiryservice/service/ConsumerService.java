@@ -1,5 +1,6 @@
 package dev.findexinquiryservice.service;
 
+import dev.findexinquiryservice.DTO.request.CreditScoreInquiryRequest;
 import dev.findexinquiryservice.DTO.response.ScoreInquiryResponse;
 import dev.findexinquiryservice.entity.Consumer;
 import dev.findexinquiryservice.exceptions.ConsumerAlreadyExistsException;
@@ -51,9 +52,10 @@ public interface ConsumerService {
 
     /**
      * Gets the credit score information wrapped
-     * in the {@link ScoreInquiryResponse} object.
-     * @param identificationNumber the ID of the desired consumer.
+     * in the {@link ScoreInquiryResponse} object. Tries to match with all the following fields to
+     * guarantee that incoming consumer forename and surname does not differ from the entity persisted in the database.
+     * @param creditScoreInquiryRequest Contains forename, surname and identification number to match a entity.
      * @return {@link ScoreInquiryResponse} object.
      */
-    ScoreInquiryResponse getScoreByID(Long identificationNumber);
+    ScoreInquiryResponse getCreditScore(CreditScoreInquiryRequest creditScoreInquiryRequest);
 }

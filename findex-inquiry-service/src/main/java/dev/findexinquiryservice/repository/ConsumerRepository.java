@@ -15,4 +15,7 @@ public interface ConsumerRepository extends JpaRepository<Consumer, Long> {
 
     // Query Method to delete consumer by his/her identification number
     void deleteByIdentificationNumber(Long identificationNumber);
+
+    // Return true if the consumer is existent and all the fields match
+    boolean existsByForenameAndSurnameAndIdentificationNumber(String forename, String surname, Long identificationNumber);
 }

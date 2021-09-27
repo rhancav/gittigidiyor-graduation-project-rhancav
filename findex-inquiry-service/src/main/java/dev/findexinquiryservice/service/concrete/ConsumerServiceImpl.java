@@ -1,5 +1,6 @@
 package dev.findexinquiryservice.service.concrete;
 
+import dev.findexinquiryservice.DTO.request.CreditScoreInquiryRequest;
 import dev.findexinquiryservice.DTO.response.ScoreInquiryResponse;
 import dev.findexinquiryservice.entity.Consumer;
 import dev.findexinquiryservice.exceptions.ConsumerAlreadyExistsException;
@@ -10,9 +11,10 @@ import dev.findexinquiryservice.service.ConsumerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 
 /**
@@ -22,6 +24,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@Transactional(readOnly = true)
 public class ConsumerServiceImpl implements ConsumerService {
     private final ConsumerRepository consumerRepository;
 
@@ -31,6 +34,7 @@ public class ConsumerServiceImpl implements ConsumerService {
      * @return
      */
     @Override
+    @Transactional
     public Consumer save(Consumer consumer) {
         if (consumerExists(consumer.getIdentificationNumber())) {
             throw new ConsumerAlreadyExistsException("Consumer already exists with the given identification number.");
@@ -99,12 +103,15 @@ public class ConsumerServiceImpl implements ConsumerService {
 
     /**
      * {@inheritDoc}
-     * @param identificationNumber the ID of the desired consumer.
+     * @param creditScoreInquiryRequest the ID of the desired consumer.
      * @return
      */
     @Override
-    public ScoreInquiryResponse getScoreByID(Long identificationNumber) {
-        Consumer consumer = findByIdentificationNumber(identificationNumber);
+    public ScoreInquiryResponse getCreditScore(CreditScoreInquiryRequest creditScoreInquiryRequest) {
+        if(!consumerExists(creditScoreInquiryRequest.getForename(), creditScoreInquiryRequest.getSurname(), creditScoreInquiryRequest.getIdentificationNumber())){
+            throw new ConsumerNotExistentException("Consumer information does not match any entity in database.");
+        }
+        Consumer consumer = findByIdentificationNumber(creditScoreInquiryRequest.getIdentificationNumber());
         return new ScoreInquiryResponse(consumer.getCreditScore());
     }
 
@@ -139,15 +146,27 @@ public class ConsumerServiceImpl implements ConsumerService {
     }
 
     /**
-     * Checks if the consumer exists or notç
-     *
+     * Checks if the consumer exists or not
+     * @param identificationNumber of the consumer
+     * @return true if it exists or else false.
+     */
+    private boolean consumerExists(String forename, String surname, Long identificationNumber) {
+        log.info("Looking if the consumer with the following fields exists: " +
+                "\nID= "+identificationNumber +
+                "\nForename: "+forename +
+                "\nSurname: "+surname);
+        // boolean result = consumerRepository.findConsumerByIdentificationNumber(identificationNumber).isPresent();
+        return consumerRepository.existsByForenameAndSurnameAndIdentificationNumber(forename, surname, identificationNumber);
+    }
+
+    /**
+     * Checks if the consumer exists or not
      * @param identificationNumber of the consumer
      * @return true if it exists or else false.
      */
     private boolean consumerExists(Long identificationNumber) {
-        log.warn("The id of the consumer is: "+identificationNumber);
-        boolean result = consumerRepository.findConsumerByIdentificationNumber(identificationNumber).isPresent();
-        log.warn("The returned result is: "+result);
-        return result;
+        log.info("Looking if the consumer with the following fields exists: " +
+                "\nID= "+identificationNumber);
+        return consumerRepository.findConsumerByIdentificationNumber(identificationNumber).isPresent();
     }
 }
