@@ -10,7 +10,7 @@
     </parent>
     <groupId>dev</groupId>
     <artifactId>sms-service</artifactId>
-    <version>0.0.1</version>
+    <version>1.0</version>
     <name>sms-service</name>
     <description>SMS Service</description>
     <properties>
@@ -51,11 +51,6 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.6.1</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
             <version>2.5.0</version>
@@ -77,6 +72,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${project.parent.version}</version>
                 <configuration>
                     <excludes>
                         <exclude>
@@ -84,6 +80,23 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.1.4</version>
+                <configuration>
+                    <from>
+                        <image>openjdk:11</image>
+                    </from>
+                    <container>
+                        <ports>9191</ports>
+                        <format>OCI</format>
+                    </container>
+                    <to>
+                        <image>docker.io/rhancav/sms-service:v1</image>
+                    </to>
                 </configuration>
             </plugin>
         </plugins>
