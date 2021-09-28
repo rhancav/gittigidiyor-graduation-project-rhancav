@@ -54,13 +54,25 @@ public class LoanApplicationController {
 
     @GetMapping("/applications")
     public String applicationList(Model model, @RequestParam long identificationNumber, @RequestParam String filter){
-        List<CreditApplicationLog> logs = loanApplicationService.getLogsByID(identificationNumber, filter);
-        if(logs.isEmpty()){
-            return "error/no-logs-found-page";
+        List<CreditApplicationLog> logs ;
+        try{
+           logs =  loanApplicationService.getLogsByID(identificationNumber, filter);
+            model.addAttribute("identificationNumber", identificationNumber);
+            model.addAttribute("filter", filter);
+            model.addAttribute("logs", logs);
         }
-        model.addAttribute("identificationNumber", identificationNumber);
-        model.addAttribute("filter", filter);
-        model.addAttribute("logs", logs);
+        catch (HttpClientErrorException e){
+            // Bad practice but works for now
+            if(e.getMessage().contains("Not found any application records for the given identification number.")){
+                log.error(e.getMessage());
+                return "error/no-logs-found-page";
+            }
+            else{
+                return "error/something-went-wrong-page";
+            }
+
+        }
+
         return "application-page";
     }
 

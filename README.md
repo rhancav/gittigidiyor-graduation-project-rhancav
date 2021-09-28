@@ -11,8 +11,8 @@ a simple UI with Spring-Thymeleaf.
 - [Installing](#installing)
     - [Maven](#maven)
     - [Docker](#docker)
-
 - [Usage](#usage)
+    - [Loan Application UI](#loan-application-ui)
 - [Versions](#versions)
 - [Contributing](#contributing)
 
@@ -48,7 +48,7 @@ to notify consumer on phone.
 | -------------:|:--------:|:-------:| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |    `/api/loan-applications` | GET | id, filter  | Get the application list by the given ID number. Support three types of `filter`    : ``ASC``, `DESC`, ``LAST``. It is set to ``UNFILTERED`` by default.                                                               |
 |    `/api/loan-applications` | POST | none  |       Post a new application. Request a body which contains `forename`, `surname`, `identificationNumber`, `monthlyIncome` and the `phone` of the consumer. 
-|
+|   `/swagger-ui.html` | GET | none | Swagger documentation page.
 
 ### Findex Inquiry Service
 This is a service which <b>fictionally</b> holds all the financial history of the consumer along with his/her credit score. 
@@ -71,14 +71,53 @@ Since it holds consumer related data, it has a Consumer database, on which basic
 | `/api/consumers`           | GET | none | Get all the consumers.
 | `/api/consumers`           | PUT | identificationNumber | Get the consumer with the given identification number and update it with the information provided in Consumer object.
 | `/api/consumers` | DELETE | identificaitonNumber | Delete the consumer with the given identification number.
-
+|`/swagger-ui.html` | GET | none | Swagger documentation page.|
 ### SMS Service
 A simple service which takes a notification and simply prints it to the console. Just a mock, maybe could use Twilio or something?
-Sending real SMSs was not the main scope of the project anyways.
+Sending real a SMSs was not the main scope of the project anyways.
 
 **Endpoints**
 
 | Endpoint | Method |  Params | Description                                                                                                                                                   |
 | -------------:|:--------:|:-------:| --------------------------------------------------------------------------------------------------------------------------------------------------      |
 | `/api/sms-dispatcher` | POST | none | New SMS request which requires a SMSRequest object which contains `phoneNumber`, `message` and `sentTime`. |
+| `/swagger-ui.html` | GET | none | Swagger documentation page.|
+## Installing
+Can be installed and run as:
+### Maven
+**1. Clone the application**
 
+```bash
+git clone https://github.com/113-GittiGidiyor-Java-Spring-Bootcamp/gittigidiyor-graduation-project-rhancav
+```
+**2. Go to the project directory**
+```bash
+cd gittigidiyor-graduation-project-rhancav
+```
+**3. Run**
+```bash
+mvnw spring-boot:run
+```
+### Docker
+**1. Clone the application**
+
+```bash
+git clone https://github.com/113-GittiGidiyor-Java-Spring-Bootcamp/gittigidiyor-graduation-project-rhancav
+```
+**2. Go to the project directory**
+```bash
+cd gittigidiyor-graduation-project-rhancav
+```
+**3. Run**
+```bash
+docker-compose up
+```
+## Usage
+The application endpoints can be tested with Swagger or Postman but if you want to try more user-friendly approach
+application UI is available on 9191.
+### Loan Application UI
+It is made with Spring and Thymeleaf couple. Has a very simple design which consists of only seven pages, three of them for handling
+errors. Can be accessed on ``localhost:9191``.
+
+**Past Applications Query Screen**
+![query](assets/past-inquiries.png)
