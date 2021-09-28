@@ -10,8 +10,6 @@ eureka:
 spring:
     application:
         name: sms-service
-    profiles:
-        active: prod
 
 management:
     endpoints:

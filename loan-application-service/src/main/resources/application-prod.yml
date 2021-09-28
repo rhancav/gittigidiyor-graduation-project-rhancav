@@ -9,8 +9,6 @@ eureka:
 spring:
     application:
         name: loan-application-service
-    profiles:
-        active: prod
     datasource:
         driverClassName: org.h2.Driver
         password: test

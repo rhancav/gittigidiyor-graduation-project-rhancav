@@ -11,8 +11,6 @@ eureka:
 spring:
     application:
         name: api-gateway
-    profiles:
-        active: prod
     main:
         web-application-type: reactive
     cloud:
