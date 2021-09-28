@@ -119,5 +119,27 @@ application UI is available on 9191.
 It is made with Spring and Thymeleaf couple. Has a very simple design which consists of only seven pages, three of them for handling
 errors. Can be accessed on ``localhost:9191``.
 
-**Past Applications Query Screen**
+**Past Applications Query Page**
 ![query](assets/past-inquiries.png)
+Filter can be set to sort the list.
+
+**New Credit Application Page**
+![query](assets/credit-application.png)
+**Consumer List Page**
+![query](assets/consumer-list.png)
+**New Consumer Page**
+![query](assets/new-consumer.png)
+**Consumer Update Page**
+![query](assets/consumer-update.png)
+**No Consumer Found Error Page**
+![query](assets/no-consumer-found.png)
+**No Logs Found Error Page**
+![query](assets/no-logs-found.png)
+**Consumer Already Exists Error Page**
+![query](assets/consumer-already-exists.png)
+
+## Versions
+All sub-modules 1.0 for initial stage.
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
