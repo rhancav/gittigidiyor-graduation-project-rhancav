@@ -10,7 +10,7 @@
     </parent>
     <groupId>loan-application-service</groupId>
     <artifactId>loan-application-service</artifactId>
-    <version>0.0.1</version>
+    <version>1.0</version>
     <name>loan-application-service</name>
     <description>Loan Application Service</description>
     <properties>
@@ -70,11 +70,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>3.0.0</version>
-        </dependency>
+
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -92,6 +88,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${project.parent.version}</version>
                 <configuration>
                     <excludes>
                         <exclude>
@@ -99,6 +96,23 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.1.4</version>
+                <configuration>
+                    <from>
+                        <image>openjdk:11</image>
+                    </from>
+                    <container>
+                        <ports>8080</ports>
+                        <format>OCI</format>
+                    </container>
+                    <to>
+                        <image>docker.io/rhancav/loan-application-service:v1</image>
+                    </to>
                 </configuration>
             </plugin>
         </plugins>

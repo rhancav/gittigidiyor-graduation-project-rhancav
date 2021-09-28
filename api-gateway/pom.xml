@@ -10,9 +10,9 @@
     </parent>
     <groupId>dev</groupId>
     <artifactId>api-gateway</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <name>api-gateway</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Api Gateway</description>
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>2020.0.4</spring-cloud.version>
@@ -54,6 +54,23 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.1.4</version>
+                <configuration>
+                    <from>
+                        <image>openjdk:11</image>
+                    </from>
+                    <container>
+                        <ports>9090</ports>
+                        <format>OCI</format>
+                    </container>
+                    <to>
+                        <image>docker.io/rhancav/api-gateway:v1</image>
+                    </to>
+                </configuration>
             </plugin>
         </plugins>
     </build>

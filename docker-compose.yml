@@ -3,10 +3,7 @@ version: "3"
 services:
   eureka-service-registry:
     container_name: eureka-service-registry
-    build:
-      context: ./eureka-service-registry
-      dockerfile: Dockerfile
-    image: eureka-service-registry:v1
+    image: 'rhancav/eureka-service-registry:v1'
     networks:
       - loan-application-network
     ports:
@@ -14,10 +11,7 @@ services:
     command: --spring.profiles.active=prod
   api-gateway:
     container_name: api-gateway
-    build:
-      context: ./api-gateway
-      dockerfile: Dockerfile
-    image: api-gateway:v1
+    image: 'rhancav/api-gateway:v1'
     networks:
       - loan-application-network
     ports:
@@ -25,10 +19,7 @@ services:
     command: --spring.profiles.active=prod
   sms-service:
     container_name: sms-service
-    build:
-      context: ./sms-service
-      dockerfile: Dockerfile
-    image: sms-service:v1
+    image: 'rhancav/sms-service:v1'
     networks:
       - loan-application-network
     ports:
@@ -36,10 +27,7 @@ services:
     command: --spring.profiles.active=prod
   findex-inquiry-service:
     container_name: findex-inquiry-service
-    build:
-      context: ./findex-inquiry-service
-      dockerfile: Dockerfile
-    image: findex-inquiry-service:v1
+    image: 'rhancav/findex-inquiry-service:v1'
     networks:
       - loan-application-network
     ports:
@@ -47,10 +35,7 @@ services:
     command: --spring.profiles.active=prod
   loan-application-service:
     container_name: loan-application-service
-    build:
-      context: ./loan-application-service
-      dockerfile: Dockerfile
-    image: loan-application-service:v1
+    image: 'rhancav/loan-application-service:v1'
     networks:
       - loan-application-network
     ports:
@@ -58,10 +43,7 @@ services:
     command: --spring.profiles.active=prod
   loan-application-ui:
     container_name: loan-application-ui
-    build:
-      context: ./loan-application-ui
-      dockerfile: Dockerfile
-    image: loan-application-ui:v1
+    image: 'rhancav/loan-application-ui:v1'
     networks:
       - loan-application-network
     ports:
