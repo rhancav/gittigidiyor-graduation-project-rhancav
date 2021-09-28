@@ -33,6 +33,7 @@ public class LoanApplicationController {
             creditEligibilityResponse = loanApplicationService.postApplication(loanApplicationRequest);
         }
         catch (HttpClientErrorException e){
+            // Bad practice but works for now
             if(e.getMessage().contains("Consumer information does not match any entity in database.")){
                 log.error(e.getMessage());
                 return "/error/no-consumer-found-page";

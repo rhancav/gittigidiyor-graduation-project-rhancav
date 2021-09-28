@@ -29,7 +29,7 @@ public class GlobalHandler {
         BindingResult bindingResult = exception.getBindingResult();
         // Populate errors map with field name and error message
         bindingResult.getFieldErrors().forEach((e) -> errors.put(e.getField(),e.getDefaultMessage()));
-        return new ResponseEntity<ValidationErrorResponse>(new ValidationErrorResponse(HttpStatus.NOT_ACCEPTABLE.value(),errors), HttpStatus.NOT_ACCEPTABLE);
+        return new ResponseEntity<>(new ValidationErrorResponse(HttpStatus.NOT_ACCEPTABLE.value(), errors), HttpStatus.NOT_ACCEPTABLE);
     }
     @ExceptionHandler(HttpClientErrorException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

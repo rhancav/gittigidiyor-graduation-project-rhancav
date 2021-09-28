@@ -8,8 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Controller
@@ -27,8 +30,20 @@ public class ConsumerController {
 
     @PostMapping("/consumers")
     public String saveConsumer(@Valid Consumer consumer){
-        ResponseEntity<Consumer> responseEntity = consumerService.save(consumer);
-        log.warn("Response entity is: "+ responseEntity);
+        ResponseEntity<Consumer> responseEntity;
+        try {
+            responseEntity = consumerService.save(consumer);
+            log.warn("Response entity is: "+ responseEntity);
+        }
+        catch (HttpClientErrorException e){
+            // Bad practice
+            if(e.getMessage().contains("Consumer already exists with the given identification number.")){
+                return "/error/consumer-already-exists-page";
+            }
+            else{
+                return "/error/something-went-wrong-page";
+            }
+        }
         return "redirect:/consumers";
     }
     @PostMapping("/consumers/update")
