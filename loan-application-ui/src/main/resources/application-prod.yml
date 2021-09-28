@@ -1,0 +1,15 @@
+server:
+  port: 9191
+spring:
+  profiles:
+    active: prod
+
+loan:
+  application:
+    service:
+      uri: http://api-gateway:9090/loan-application-service/api/loan-applications
+
+findex:
+  consumers:
+    service:
+      uri: http://api-gateway:9090/findex-inquiry-service/api/consumers

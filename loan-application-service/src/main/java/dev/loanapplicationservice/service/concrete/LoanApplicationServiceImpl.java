@@ -12,6 +12,7 @@ import dev.loanapplicationservice.utilities.Messages;
 import dev.loanapplicationservice.utilities.StringConstants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.HttpClientErrorException;
@@ -27,6 +28,8 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
     private final RestTemplate restTemplate;
     private final SMSService smsService;
     private final CreditApplicationLogService creditApplicationLogService;
+    @Value("${creditscore.api.uri}")
+    public String CREDIT_SCORE_API_URL;
 
     /**
      * {@inheritDoc}
@@ -88,7 +91,7 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
     private ScoreInquiryResponse getScoreInquiryResponse(ScoreInquiryRequest scoreInquiryRequest){
         ScoreInquiryResponse scoreInquiryResponse;
         // Target URL with path variable
-        String queryURL = StringConstants.CREDIT_SCORE_API_URL;
+        String queryURL = CREDIT_SCORE_API_URL;
         try{
             scoreInquiryResponse = restTemplate.postForObject(queryURL, scoreInquiryRequest, ScoreInquiryResponse.class);
         }

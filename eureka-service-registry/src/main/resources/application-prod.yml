@@ -1,0 +1,15 @@
+eureka:
+    instance:
+        hostname: eureka-service-registry
+    client:
+        fetch-registry: false
+        register-with-eureka: false
+        service-url:
+            defaultZone: http://eureka-service-registry:8761/eureka/
+
+server:
+    port: 8761
+
+spring:
+    profiles:
+        active: prod

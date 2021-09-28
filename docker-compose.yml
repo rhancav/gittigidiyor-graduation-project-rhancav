@@ -1,48 +1,73 @@
 version: "3"
 
 services:
-  loan-application-ui:
-    image: "rhancav/loan-application-ui"
-    container_name: loan-application-ui
-    networks:
-      - loan-application-network
-    ports:
-      - "9191:9191"
-  findex-inquiry-service:
-    image: "rhancav/findex-inquiry-service"
-    container_name: findex-inquiry-service
-    networks:
-      - loan-application-network
-    ports:
-      - "8081:8081"
-  api-gateway:
-    image: "rhancav/api-gateway"
-    container_name: api-gateway
-    networks:
-      - loan-application-network
-    ports:
-    - "9090:9090"
   eureka-service-registry:
-    image: "rhancav/eureka-service-registry"
     container_name: eureka-service-registry
+    build:
+      context: ./eureka-service-registry
+      dockerfile: Dockerfile
+    image: eureka-service-registry:v1
     networks:
       - loan-application-network
     ports:
-    - "8761:8761"
+      - "8761:8761"
+    command: --spring.profiles.active=prod
+  api-gateway:
+    container_name: api-gateway
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    image: api-gateway:v1
+    networks:
+      - loan-application-network
+    ports:
+      - "9090:9090"
+    command: --spring.profiles.active=prod
+  sms-service:
+    container_name: sms-service
+    build:
+      context: ./sms-service
+      dockerfile: Dockerfile
+    image: sms-service:v1
+    networks:
+      - loan-application-network
+    ports:
+      - "8082:8082"
+    command: --spring.profiles.active=prod
+  findex-inquiry-service:
+    container_name: findex-inquiry-service
+    build:
+      context: ./findex-inquiry-service
+      dockerfile: Dockerfile
+    image: findex-inquiry-service:v1
+    networks:
+      - loan-application-network
+    ports:
+    - "8081:8081"
+    command: --spring.profiles.active=prod
   loan-application-service:
-    image: "rhancav/loan-application-api"
     container_name: loan-application-service
+    build:
+      context: ./loan-application-service
+      dockerfile: Dockerfile
+    image: loan-application-service:v1
     networks:
       - loan-application-network
     ports:
     - "8080:8080"
-  sms-service:
-    image: "rhancav/sms-service"
-    container_name: sms-service
+    command: --spring.profiles.active=prod
+  loan-application-ui:
+    container_name: loan-application-ui
+    build:
+      context: ./loan-application-ui
+      dockerfile: Dockerfile
+    image: loan-application-ui:v1
     networks:
       - loan-application-network
     ports:
-    - "8082:8082"
+    - "9191:9191"
+    command: --spring.profiles.active=prod
+
 networks:
   loan-application-network:
-
+    driver: bridge

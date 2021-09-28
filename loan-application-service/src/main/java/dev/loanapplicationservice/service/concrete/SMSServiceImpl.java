@@ -8,6 +8,7 @@ import dev.loanapplicationservice.utilities.Messages;
 import dev.loanapplicationservice.utilities.StringConstants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
@@ -20,6 +21,8 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class SMSServiceImpl implements SMSService {
     private final RestTemplate restTemplate;
+    @Value("${sms.service.api.uri}")
+    public String SMS_SERVICE_API_URL;
 
     /**
      * {@inheritDoc}
@@ -38,7 +41,7 @@ public class SMSServiceImpl implements SMSService {
         }
         SMSRequest smsRequest = new SMSRequest(loanApplicationRequest.getPhone(), message);
         // Send request object
-        SMSDispatcherResponse smsDispatcherResponse = restTemplate.postForObject(StringConstants.SMS_SERVICE_API_URL, smsRequest, SMSDispatcherResponse.class);
+        SMSDispatcherResponse smsDispatcherResponse = restTemplate.postForObject(SMS_SERVICE_API_URL, smsRequest, SMSDispatcherResponse.class);
         // Log
         log.info(smsDispatcherResponse.getMessage());
     }

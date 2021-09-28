@@ -1,39 +1,41 @@
 server:
-    port : 9090
+  port : 9090
 
 eureka:
-    client:
-        register-with-eureka: true
-        fetch-registry: true
-        service-url:
-            defaultZone: http://localhost:8761/eureka
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
 
 spring:
-    application:
-        name: api-gateway
-    main:
-        web-application-type: reactive
-    cloud:
-        gateway:
-            routes:
-            -   id: findex-inquiry-service
-                uri: lb://FINDEX-INQUIRY-SERVICE
-                predicates:
-                - Path=/**
-            -   id: loan-application-service
-                uri: lb://LOAN-APPLICATION-SERVICE
-                predicates:
-                - Path=/**
-            -   id: sms-service
-                uri: lb://SMS-SERVICE
-                predicates:
-                - Path=/**
-            discovery:
-                locator:
-                    lower-case-service-id: true
-                    enabled: true
+  application:
+    name: api-gateway
+  profiles:
+    active: dev
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      routes:
+        -   id: findex-inquiry-service
+            uri: lb://FINDEX-INQUIRY-SERVICE
+            predicates:
+              - Path=/**
+        -   id: loan-application-service
+            uri: lb://LOAN-APPLICATION-SERVICE
+            predicates:
+              - Path=/**
+        -   id: sms-service
+            uri: lb://SMS-SERVICE
+            predicates:
+              - Path=/**
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: true
 management:
-    endpoints:
-        web:
-            exposure:
-                include=*:
+  endpoints:
+    web:
+      exposure:
+        include=*:

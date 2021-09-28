@@ -1,0 +1,42 @@
+server:
+    port: 8080
+
+eureka:
+    client:
+        service-url:
+            defaultZone: http://eureka-service-registry:8761/eureka
+
+spring:
+    application:
+        name: loan-application-service
+    profiles:
+        active: prod
+    datasource:
+        driverClassName: org.h2.Driver
+        password: test
+        url: jdbc:h2:mem:loan-application-db
+        username: test
+    h2:
+        console:
+            enabled: true
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        defer-datasource-initialization: true
+        hibernate:
+            ddl-auto: create-drop
+        show-sql: true
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*'
+
+sms:
+    service:
+        api:
+            uri: http://api-gateway:9090/sms-service/api/sms-dispatcher/
+
+creditscore:
+    api:
+        uri: http://api-gateway:9090/findex-inquiry-service/api/credit-score-inquiry
