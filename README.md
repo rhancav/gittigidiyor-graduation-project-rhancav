@@ -13,6 +13,7 @@ a simple UI with Spring-Thymeleaf.
     - [Docker](#docker)
 - [Usage](#usage)
     - [Loan Application UI](#loan-application-ui)
+- [TODO](#todo)
 - [Versions](#versions)
 - [Contributing](#contributing)
 
@@ -138,6 +139,11 @@ Filter can be set to sort the list.
 **Consumer Already Exists Error Page**
 ![query](assets/consumer-already-exists.png)
 
+## TODO
+- Zipkin
+- Spring Security
+- Spring Cloud Hystrix
+- Spring Cloud Config
 ## Versions
 All sub-modules 1.0 for initial stage.
 
