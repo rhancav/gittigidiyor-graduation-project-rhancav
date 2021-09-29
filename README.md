@@ -8,8 +8,8 @@ a simple UI with Spring-Thymeleaf.
     - [Maven](#maven)
     - [Docker](#docker)
 - [Usage](#usage)
-    - [Loan Application Service](#loan-app-service)
-    - [Findex Inquiry Service](#findex-service)
+    - [Loan Application Service](#loan-application-service)
+    - [Findex Inquiry Service](#findex-inquiry-service)
     - [SMS Service](#sms-service)
     - [Loan Application UI](#loan-application-ui)
 - [TODO](#todo)
@@ -64,7 +64,6 @@ not <b>necessary</b> to go with microservice architecture and if we give it a se
 task. But since it was part of the bootcamp process, and I was lacking knowledge on it, I have chosen it over monolithic architecture to push myself even further.
 Given that, it consists of three microservice mocks: Findex Inquiry Service, SMS Service, Loan Application Service. They are discovered by Eureka Service Registry and
 the incoming requests are routed by Spring Cloud Gateway to the corresponding services. Used RestTemplate to communicate with other services.
-
 ### Loan Application Service
 The main job of the service is to process the loan application request, send eligibility notices and log the applications 
 to the database for later queries. It simply takes consumer info and returns a result message which contains eligibility status and credit limit. How it decides eligibility and credit limit? Well, if the credit score of the consumer which is acquired from Findex
@@ -80,7 +79,6 @@ to notify consumer on phone. Some unit tests are available under Test package fo
 |    `/api/loan-applications` | GET | id, filter  | Get the application list by the given ID number. Support three types of `filter`    : ``ASC``, `DESC`, ``LAST``. It is set to ``UNFILTERED`` by default.                                                               |
 |    `/api/loan-applications` | POST | none  |       Post a new application. Request a body which contains `forename`, `surname`, `identificationNumber`, `monthlyIncome` and the `phone` of the consumer. 
 |   `/swagger-ui.html` | GET | none | Swagger documentation page.
-
 ### Findex Inquiry Service
 This is a service which <b>fictionally</b> holds all the financial history of the consumer along with his/her credit score. 
 In our situation, it just calculates the credit score according to a simple algorithm and returns it if queried. The credit score is calculated
