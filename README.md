@@ -37,7 +37,7 @@ Given that, it consists of three microservice mocks: Findex Inquiry Service, SMS
 the incoming requests are routed by Spring Cloud Gateway to the corresponding services. Used RestTemplate to communicate with other services.
 ### Loan Application Service
 The main job of the service is to process the loan application request, send eligibility notices and log the applications 
-to the database for later queries. It simply takes consumer info and returns a result message which contains elibility status and credit limit. How it decides eligibility and credit limit? Well, if the credit score of the consumer which is acquired from Findex
+to the database for later queries. It simply takes consumer info and returns a result message which contains eligibility status and credit limit. How it decides eligibility and credit limit? Well, if the credit score of the consumer which is acquired from Findex
 Inquiry Service is lower than 500, the consumer is not eligible. If it is higher, and the monthly income of the consumer is less then 5000
 then the consumer is eligible for 10000 TRY, else if the monthly income is higher than 5000 the limit raises to 20000 TRY. If the score is higher then
 1000, the credit limit is calculated as follows: limit = income*4. Credit score is acquired from Findex Inquiry Service. Always sends the result to the SMS Service
@@ -75,7 +75,7 @@ Since it holds consumer related data, it has a Consumer database, on which basic
 |`/swagger-ui.html` | GET | none | Swagger documentation page.|
 ### SMS Service
 A simple service which takes a notification and simply prints it to the console. Just a mock, maybe could use Twilio or something?
-Sending real a SMSs was not the main scope of the project anyways.
+Sending real SMSs was not in the scope of the project anyways.
 
 **Endpoints**
 
@@ -125,22 +125,29 @@ it is not possible to reset the form fields state without JS. Since this was not
 
 **Past Applications Query Page**
 ![query](assets/past-inquiries.png)
-Filter can be set to sort the list.
-
+Filter can be set to sort the list. It will return the no logs found page if no logs found for the given consumer. <b> Be wary that deleting the invalid input wont reset the
+forms state, you need to refresh the page.</b>
 **New Credit Application Page**
 ![query](assets/credit-application.png)
+Consumer should already exist in the Findex Service consumer database or else it will return the consumer not found page. For it to acquire financial data, consumer needs to be exsistent right? <b> Be wary that deleting the invalid input wont reset the forms state, you need to refresh the page.</b>
 **Consumer List Page**
 ![query](assets/consumer-list.png)
+Lists all the consumers available in the database. Some mock data are inserted during application initialization. From there you can also delete and update consumer information.
 **New Consumer Page**
 ![query](assets/new-consumer.png)
+If the consumer is existent with the same identification number, it will return the consumer already existent error page. If credit score is not set, it will be calculated by the backend service.<b> Be wary that deleting the invalid input wont reset the forms state, you need to refresh the page.</b>
 **Consumer Update Page**
 ![query](assets/consumer-update.png)
+You can update forename, surname and the credit score of the consumer. <b> Be wary that deleting the invalid input wont reset the forms state, you need to refresh the page.</b>
 **No Consumer Found Error Page**
 ![query](assets/no-consumer-found.png)
+Is shown when the consumer is not found.
 **No Logs Found Error Page**
 ![query](assets/no-logs-found.png)
+Is shown when no logs found for the given consumer.
 **Consumer Already Exists Error Page**
 ![query](assets/consumer-already-exists.png)
+Is shown when the consumer already exists with the given identification number.
 
 ## TODO
 - Zipkin
