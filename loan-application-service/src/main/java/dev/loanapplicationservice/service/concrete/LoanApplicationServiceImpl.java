@@ -5,6 +5,7 @@ import dev.loanapplicationservice.DTO.request.ScoreInquiryRequest;
 import dev.loanapplicationservice.DTO.response.*;
 import dev.loanapplicationservice.exceptions.ConsumerNotFoundOnRemoteException;
 import dev.loanapplicationservice.exceptions.NotAValidIDException;
+import dev.loanapplicationservice.exceptions.NotNullableException;
 import dev.loanapplicationservice.service.CreditApplicationLogService;
 import dev.loanapplicationservice.service.LoanApplicationService;
 import dev.loanapplicationservice.service.SMSService;
@@ -39,6 +40,9 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
      */
     @Override
     public EligibilityResponse checkEligibility(LoanApplicationRequest loanApplicationRequest) {
+        if(loanApplicationRequest == null){
+            throw new NotNullableException("Loan Application Request cannot be null.");
+        }
         // Cant end with an odd number
         if(loanApplicationRequest.getIdentificationNumber()%2 != 0){
             throw new NotAValidIDException("Not a valid identification number, cannot end with an odd number.");
@@ -88,7 +92,7 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
      * @param scoreInquiryRequest containing basic consumer information
      * @return ScoreInquiryObject if the request is successfull.
      */
-    private ScoreInquiryResponse getScoreInquiryResponse(ScoreInquiryRequest scoreInquiryRequest){
+    public ScoreInquiryResponse getScoreInquiryResponse(ScoreInquiryRequest scoreInquiryRequest){
         ScoreInquiryResponse scoreInquiryResponse;
         // Target URL with path variable
         String queryURL = CREDIT_SCORE_API_URL;

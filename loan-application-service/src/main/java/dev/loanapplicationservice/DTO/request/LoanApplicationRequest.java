@@ -3,8 +3,10 @@ package dev.loanapplicationservice.DTO.request;
 import dev.loanapplicationservice.utilities.Messages;
 import dev.loanapplicationservice.utilities.StringConstants;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.*;
 
@@ -15,6 +17,8 @@ import javax.validation.constraints.*;
  */
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class LoanApplicationRequest {
     @NotNull
     @Digits(integer = 11, fraction = 0, message = Messages.NOT_A_VALID_ID_ERROR)

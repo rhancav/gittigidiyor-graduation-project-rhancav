@@ -41,7 +41,7 @@ to the database for later queries. It simply takes consumer info and returns a r
 Inquiry Service is lower than 500, the consumer is not eligible. If it is higher, and the monthly income of the consumer is less then 5000
 then the consumer is eligible for 10000 TRY, else if the monthly income is higher than 5000 the limit raises to 20000 TRY. If the score is higher then
 1000, the credit limit is calculated as follows: limit = income*4. Credit score is acquired from Findex Inquiry Service. Always sends the result to the SMS Service
-to notify consumer on phone.
+to notify consumer on phone. Some unit tests are available under Test package for this service.
 
 **Endpoints**
 
@@ -61,7 +61,7 @@ according to the last number of the identification number:
 - 6 -> 400
 - 8 -> 900
 
-Since it holds consumer related data, it has a Consumer database, on which basic CRUD operations are possible.
+Since it holds consumer related data, it has a Consumer database, on which basic CRUD operations are possible. Unit tests are available for this service under Test package.
 
 **Endpoints**
 
