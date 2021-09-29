@@ -118,7 +118,11 @@ The application endpoints can be tested with Swagger or Postman but if you want 
 application UI is available on 9191.
 ### Loan Application UI
 It is made with Spring and Thymeleaf couple. Has a very simple design which consists of only seven pages, three of them for handling
-errors. Can be accessed on ``localhost:9191``.
+errors. Can be accessed on ``localhost:9191``. <b>Be wary that form validations are purely HTML based. If it fails to validate
+you need to refresh the page to fill form again, or else it will keep giving the same validation error even if you enter a valid input. Unfortunately
+it is not possible to reset the form fields state without JS. Since this was not a frontend oriented project, I was lazy enough to control
+validations via JS. :)
+</b>
 
 **Past Applications Query Page**
 ![query](assets/past-inquiries.png)
