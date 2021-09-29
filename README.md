@@ -122,32 +122,32 @@ errors. Can be accessed on ``localhost:9191``. <b>!!!ATTENTION HERE!!! Be wary t
 you need to refresh the page to fill form again, or else it will keep giving the same validation error even if you enter a valid input. Unfortunately
 it is not possible to reset the form fields state without JS. Since this was not a frontend oriented project, I was lazy enough to not control validations via JS. :)
 </b>
-
-**Past Applications Query Page**
-![query](assets/past-inquiries.png)
+#### Pages
+##### Past Applications Query Page
 Filter can be set to sort the list. It will return the no logs found page if no logs found for the given consumer. <b> Be wary that deleting the invalid input wont reset the
 forms state, you need to refresh the page.</b>
-**New Credit Application Page**
-![query](assets/credit-application.png)
+![query](assets/past-inquiries.png)
+##### New Credit Application Page
 Consumer should already exist in the Findex Service consumer database or else it will return the consumer not found page. For it to acquire financial data, consumer needs to be exsistent right? <b> Be wary that deleting the invalid input wont reset the forms state, you need to refresh the page.</b>
-**Consumer List Page**
-![query](assets/consumer-list.png)
+![query](assets/credit-application.png)
+##### Consumer List Page
 Lists all the consumers available in the database. Some mock data are inserted during application initialization. From there you can also delete and update consumer information.
-**New Consumer Page**
-![query](assets/new-consumer.png)
+![query](assets/consumer-list.png)
+##### New Consumer Page
 If the consumer is existent with the same identification number, it will return the consumer already existent error page. If credit score is not set, it will be calculated by the backend service.<b> Be wary that deleting the invalid input wont reset the forms state, you need to refresh the page.</b>
-**Consumer Update Page**
-![query](assets/consumer-update.png)
+![query](assets/new-consumer.png)
+##### Consumer Update Page
 You can update forename, surname and the credit score of the consumer. <b> Be wary that deleting the invalid input wont reset the forms state, you need to refresh the page.</b>
-**No Consumer Found Error Page**
-![query](assets/no-consumer-found.png)
+![query](assets/consumer-update.png)
+##### No Consumer Found Error Page
 Is shown when the consumer is not found.
-**No Logs Found Error Page**
-![query](assets/no-logs-found.png)
+![query](assets/no-consumer-found.png)
+##### No Logs Found Error Page
 Is shown when no logs found for the given consumer.
-**Consumer Already Exists Error Page**
-![query](assets/consumer-already-exists.png)
+![query](assets/no-logs-found.png)
+##### Consumer Already Exists Error Page
 Is shown when the consumer already exists with the given identification number.
+![query](assets/consumer-already-exists.png)
 
 ## TODO
 - Zipkin
