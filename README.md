@@ -4,19 +4,17 @@ microservices communicate with each other through Spring Cloud Gateway and regis
 a simple UI with Spring-Thymeleaf.
 ## Table of Contents
 - [Technologies](#technologies)
-- [Services](#services)
-    - [Loan Application Service](#loan-app-service)
-    - [Findex Inquiry Service](#findex-service)
-    - [SMS Service](#sms-service)
 - [Installing](#installing)
     - [Maven](#maven)
     - [Docker](#docker)
 - [Usage](#usage)
+    - [Loan Application Service](#loan-app-service)
+    - [Findex Inquiry Service](#findex-service)
+    - [SMS Service](#sms-service)
     - [Loan Application UI](#loan-application-ui)
 - [TODO](#todo)
 - [Versions](#versions)
 - [Contributing](#contributing)
-
 ## Technologies
 - OpenJDK 11
 - Maven
@@ -27,7 +25,38 @@ a simple UI with Spring-Thymeleaf.
 - Lombok
 - JIB
 - Thymeleaf
-## Services
+
+## Installing
+Can be installed and run as:
+### Maven
+**1. Clone the application**
+
+```bash
+git clone https://github.com/113-GittiGidiyor-Java-Spring-Bootcamp/gittigidiyor-graduation-project-rhancav
+```
+**2. Go to the project directory**
+```bash
+cd gittigidiyor-graduation-project-rhancav
+```
+**3. Run**
+```bash
+mvnw spring-boot:run
+```
+### Docker
+**1. Clone the application**
+
+```bash
+git clone https://github.com/113-GittiGidiyor-Java-Spring-Bootcamp/gittigidiyor-graduation-project-rhancav
+```
+**2. Go to the project directory**
+```bash
+cd gittigidiyor-graduation-project-rhancav
+```
+**3. Run**
+```bash
+docker-compose up
+```
+## Usage
 The main requirement for the project was that the consumer would be able to apply for a loan(optionally through UI) with their forename,
 surname, identification number and phone. Then the eligibility for the consumer would be calculated server-side, and the result would be
 shown to the consumer and then persisted to database for later queries. Along with that, an SMS notification would be sent to the consumer. It was
@@ -83,72 +112,40 @@ Sending real SMSs was not in the scope of the project anyways.
 | -------------:|:--------:|:-------:| --------------------------------------------------------------------------------------------------------------------------------------------------      |
 | `/api/sms-dispatcher` | POST | none | New SMS request which requires a SMSRequest object which contains `phoneNumber`, `message` and `sentTime`. |
 | `/swagger-ui.html` | GET | none | Swagger documentation page.|
-## Installing
-Can be installed and run as:
-### Maven
-**1. Clone the application**
-
-```bash
-git clone https://github.com/113-GittiGidiyor-Java-Spring-Bootcamp/gittigidiyor-graduation-project-rhancav
-```
-**2. Go to the project directory**
-```bash
-cd gittigidiyor-graduation-project-rhancav
-```
-**3. Run**
-```bash
-mvnw spring-boot:run
-```
-### Docker
-**1. Clone the application**
-
-```bash
-git clone https://github.com/113-GittiGidiyor-Java-Spring-Bootcamp/gittigidiyor-graduation-project-rhancav
-```
-**2. Go to the project directory**
-```bash
-cd gittigidiyor-graduation-project-rhancav
-```
-**3. Run**
-```bash
-docker-compose up
-```
-## Usage
 The application endpoints can be tested with Swagger or Postman but if you want to try more user-friendly approach
 application UI is available on 9191.
+
 ### Loan Application UI
 It is made with Spring and Thymeleaf couple. Has a very simple design which consists of only seven pages, three of them for handling
 errors. Can be accessed on ``localhost:9191``. <b>!!!ATTENTION HERE!!! Be wary that form validations are purely HTML based. If it fails to validate
 you need to refresh the page to fill form again, or else it will keep giving the same validation error even if you enter a valid input. Unfortunately
 it is not possible to reset the form fields state without JS. Since this was not a frontend oriented project, I was lazy enough to not control validations via JS. :)
 </b>
-#### Pages
-##### Past Applications Query Page
+#### Past Applications Query Page
 Filter can be set to sort the list. It will return the no logs found page if no logs found for the given consumer. <b> Be wary that deleting the invalid input wont reset the
 forms state, you need to refresh the page.</b>
 ![query](assets/past-inquiries.png)
-##### New Credit Application Page
+#### New Credit Application Page
 Consumer should already exist in the Findex Service consumer database or else it will return the consumer not found page. For it to acquire financial data, consumer needs to be exsistent right? <b> Be wary that deleting the invalid input wont reset the forms state, you need to refresh the page.</b>
 ![query](assets/credit-application.png)
-##### Consumer List Page
+#### Consumer List Page
 Lists all the consumers available in the database. Some mock data are inserted during application initialization. From there you can also delete and update consumer information.
 ![query](assets/consumer-list.png)
-##### New Consumer Page
+#### New Consumer Page
 If the consumer is existent with the same identification number, it will return the consumer already existent error page. If credit score is not set, it will be calculated by the backend service.<b> Be wary that deleting the invalid input wont reset the forms state, you need to refresh the page.</b>
 ![query](assets/new-consumer.png)
-##### Consumer Update Page
+#### Consumer Update Page
 You can update forename, surname and the credit score of the consumer. <b> Be wary that deleting the invalid input wont reset the forms state, you need to refresh the page.</b>
 ![query](assets/consumer-update.png)
-##### No Consumer Found Error Page
+#### No Consumer Found Error Page
 Is shown when the consumer is not found.
 ![query](assets/no-consumer-found.png)
-##### No Logs Found Error Page
+#### No Logs Found Error Page
 Is shown when no logs found for the given consumer.
 ![query](assets/no-logs-found.png)
-##### Consumer Already Exists Error Page
+#### Consumer Already Exists Error Page
 Is shown when the consumer already exists with the given identification number.
 ![query](assets/consumer-already-exists.png)
-
 ## TODO
 - Zipkin
 - Spring Security
