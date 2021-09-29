@@ -64,6 +64,7 @@ not <b>necessary</b> to go with microservice architecture and if we give it a se
 task. But since it was part of the bootcamp process, and I was lacking knowledge on it, I have chosen it over monolithic architecture to push myself even further.
 Given that, it consists of three microservice mocks: Findex Inquiry Service, SMS Service, Loan Application Service. They are discovered by Eureka Service Registry and
 the incoming requests are routed by Spring Cloud Gateway to the corresponding services. Used RestTemplate to communicate with other services.
+
 ### Loan Application Service
 The main job of the service is to process the loan application request, send eligibility notices and log the applications 
 to the database for later queries. It simply takes consumer info and returns a result message which contains eligibility status and credit limit. How it decides eligibility and credit limit? Well, if the credit score of the consumer which is acquired from Findex
