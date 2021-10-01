@@ -111,8 +111,7 @@ Sending real SMSs was not in the scope of the project anyways.
 | -------------:|:--------:|:-------:| --------------------------------------------------------------------------------------------------------------------------------------------------      |
 | `/api/sms-dispatcher` | POST | none | New SMS request which requires a SMSRequest object which contains `phoneNumber`, `message` and `sentTime`. |
 | `/swagger-ui.html` | GET | none | Swagger documentation page.|
-The application endpoints can be tested with Swagger or Postman but if you want to try more user-friendly approach
-application UI is available on 9191.
+
 
 ### Loan Application UI
 It is made with Spring and Thymeleaf couple. Has a very simple design which consists of only seven pages, three of them for handling
